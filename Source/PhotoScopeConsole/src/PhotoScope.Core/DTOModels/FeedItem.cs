@@ -11,7 +11,7 @@ namespace PhotoScope.Core.DTOModels
         {
             get
             {
-                _imageUri = $"https://live.staticflickr.com/{Server}/{ID}_{Secret}_s.jpg";
+                _imageUri = $"https://live.staticflickr.com/{Server}/{ID}_{Secret}_m.jpg";
                 return _imageUri;
             }
             set { _imageUri = value; }
