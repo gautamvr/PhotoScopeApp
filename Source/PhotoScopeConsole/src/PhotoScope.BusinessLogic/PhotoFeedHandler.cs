@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
+using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
 
 namespace PhotoScope.BusinessLogic
@@ -21,10 +22,24 @@ namespace PhotoScope.BusinessLogic
             _feedPopulator = _container.Resolve<IFeedDtoPopulator>();
         }
 
-        public void UpdateFeed(string searchTag)
+        public async void UpdateFeed(string searchTag)
         {
-            var photoList = _serviceAccessor.GetImages(searchTag);
-            _feedPopulator.FeedItemListDto = photoList;
+            var photoList = await _serviceAccessor.GetImages(searchTag);
+
+            ProcessImages(photoList);
+        }
+
+        private void ProcessImages(Feed photoList)
+        {
+            var photoItems = photoList.Photos?.Photo;
+
+            if (photoItems != null)
+            {
+                foreach (var feedItem in photoItems)
+                {
+                    _feedPopulator.FeedDto.Photos.Photo.Add(feedItem);
+                }
+            }
         }
     }
 }

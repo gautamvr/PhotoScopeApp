@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOModels\Feed.cs" />
     <Compile Include="DTOModels\ObservableModel.cs" />
     <Compile Include="DTOModels\FeedItem.cs" />
     <Compile Include="DTOModels\FeedItemList.cs" />

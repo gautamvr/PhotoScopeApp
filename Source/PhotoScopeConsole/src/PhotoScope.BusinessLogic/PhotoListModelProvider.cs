@@ -5,7 +5,7 @@ using PhotoScope.Core.Interfaces;
 
 namespace PhotoScope.BusinessLogic
 {
-    public class PhotoListModelProvider : IModelProvider<FeedItemList>
+    public class PhotoListModelProvider : IModelProvider<Feed>
     {
         private IFeedDtoPopulator _feedDtoPopulator;
 
@@ -14,9 +14,9 @@ namespace PhotoScope.BusinessLogic
             _feedDtoPopulator = container.Resolve<IFeedDtoPopulator>();
         }
 
-        public FeedItemList GetInitialModel()
+        public Feed GetInitialModel()
         {
-            return _feedDtoPopulator.FeedItemListDto;
+            return _feedDtoPopulator.FeedDto;
         }
     }
 }

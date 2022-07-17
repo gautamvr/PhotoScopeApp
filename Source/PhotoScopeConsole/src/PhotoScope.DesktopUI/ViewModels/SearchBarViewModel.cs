@@ -10,10 +10,10 @@ namespace PhotoScope.DesktopUI.ViewModels
 {
     public class SearchBarViewModel : ViewModelBase
     {
-        private SearchTag _searchWord;
+        private string _searchWord;
         private IPhotoFeedHandler _photoFeedHandler;
 
-        public SearchTag SearchWord
+        public string SearchWord
         {
             get => _searchWord;
             set => SetField(ref _searchWord, value);
@@ -29,9 +29,9 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public void OnSearchCommand(object searchKeyWord)
         {
-            if (SearchWord != null && !string.IsNullOrEmpty(SearchWord.KeyWord))
+            if (SearchWord != null && !string.IsNullOrEmpty(SearchWord))
             {
-                _photoFeedHandler.UpdateFeed(SearchWord.KeyWord);
+                _photoFeedHandler.UpdateFeed(SearchWord);
             }
             
         }

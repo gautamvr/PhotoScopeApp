@@ -16,8 +16,8 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Blue" Width="40" Height="40" Margin="10">
-                            <Rectangle Width="40" Height="40" Fill="Blue"/>
+                        <Border Margin="10">
+                            <Image Source="{Binding Path=ImageUri}" Stretch="None"></Image>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

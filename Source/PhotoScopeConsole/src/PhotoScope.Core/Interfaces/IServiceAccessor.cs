@@ -1,9 +1,10 @@
-﻿using PhotoScope.Core.DTOModels;
+﻿using System.Threading.Tasks;
+using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.Core.Interfaces
 {
     public interface IServiceAccessor
     {
-        FeedItemList GetImages(string keyword);
+        Task<Feed> GetImages(string keyword);
     }
 }

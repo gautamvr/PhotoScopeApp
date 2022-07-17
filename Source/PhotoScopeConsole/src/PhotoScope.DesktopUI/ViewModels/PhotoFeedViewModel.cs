@@ -1,17 +1,29 @@
 ﻿using System.Collections.ObjectModel;
+using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
+using PhotoScope.Core.Interfaces;
 using PhotoScope.Utilities.UI.Common;
 
 namespace PhotoScope.DesktopUI.ViewModels
 {
     public class PhotoFeedViewModel : ViewModelBase
     {
-        private FeedItemList _photoList;
+        private Feed _feed;
+        private IModelProvider<Feed> _modelProvider;
 
-        public FeedItemList PhotoList
+        public PhotoFeedViewModel(IUnityContainer container)
         {
-            get => _photoList;
-            set => SetField(ref _photoList, value);
+            _modelProvider = container.Resolve<IModelProvider<Feed>>();
+            _feed = _modelProvider.GetInitialModel();
+
+            GridItems = Feed?.Photos?.Photo;
+
+        }
+
+        public Feed Feed
+        {
+            get => _feed;
+            set => SetField(ref _feed, value);
         }
 
         private ObservableCollection<FeedItem> _gridItems;
@@ -21,18 +33,6 @@ namespace PhotoScope.DesktopUI.ViewModels
             get => _gridItems;
             set => SetField(ref _gridItems, value);
         }
-
-
-        public PhotoFeedViewModel()
-        {
-            GridItems = new ObservableCollection<FeedItem>();
-            GridItems.Add(new FeedItem{ ImageUri = ""});
-            GridItems.Add(new FeedItem{ ImageUri = ""});
-            GridItems.Add(new FeedItem{ ImageUri = ""});
-            GridItems.Add(new FeedItem{ ImageUri = ""});
-            GridItems.Add(new FeedItem{ ImageUri = ""});
-            GridItems.Add(new FeedItem{ ImageUri = ""});
-
-        }
+        
     }
 }

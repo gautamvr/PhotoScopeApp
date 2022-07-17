@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,19 +12,22 @@ namespace PhotoScope.BusinessLogic
 {
     public class PhotoFeedDtoPopulator : IFeedDtoPopulator
     {
-        public FeedItemList FeedItemListDto { get; set; }
+        public Feed FeedDto { get; set; }
 
         private IServiceAccessor _serviceAccessor;
 
         public PhotoFeedDtoPopulator(IUnityContainer container)
         {
             _serviceAccessor = container.Resolve<IServiceAccessor>();
-            FeedItemListDto = new FeedItemList();
+
+            FeedDto = new Feed();
+            FeedDto.Photos = new FeedItemList();
+            FeedDto.Photos.Photo = new ObservableCollection<FeedItem>();
         }
 
-        public FeedItemList GetPhotoList()
+        public Feed GetPhotoList()
         {
-            return FeedItemListDto;
+            return FeedDto;
         }
     }
 }

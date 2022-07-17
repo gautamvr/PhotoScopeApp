@@ -6,7 +6,7 @@ namespace PhotoScope.Core.DTOModels
 {
     public class FeedItemList : ObservableModel
     {
-        public ObservableCollection<FeedItem> FeedItems { get; set; }
+        public ObservableCollection<FeedItem> Photo { get; set; }
 
     }
 }
