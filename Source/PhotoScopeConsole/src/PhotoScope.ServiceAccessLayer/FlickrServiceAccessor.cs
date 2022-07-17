@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using PhotoScope.Core.DTOs;
+using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
 
 namespace PhotoScope.ServiceAccessLayer
@@ -21,13 +21,13 @@ namespace PhotoScope.ServiceAccessLayer
 
         }
 
-        public PhotoList GetImages(SearchTag keyword)
+        public PhotoList GetImages(string keyword)
         {
             PhotoList photoList = GetImagesFromApi(keyword).Result;
             return photoList;
         }
 
-        public async Task<PhotoList> GetImagesFromApi(SearchTag keyword)
+        public async Task<PhotoList> GetImagesFromApi(string keyword)
         {
             ApiClient.DefaultRequestHeaders.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

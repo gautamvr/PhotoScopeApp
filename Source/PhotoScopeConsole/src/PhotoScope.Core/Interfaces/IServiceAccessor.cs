@@ -1,9 +1,9 @@
-﻿using PhotoScope.Core.DTOs;
+﻿using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.Core.Interfaces
 {
     public interface IServiceAccessor
     {
-        PhotoList GetImages(SearchTag keyword);
+        PhotoList GetImages(string keyword);
     }
 }

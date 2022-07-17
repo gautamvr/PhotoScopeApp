@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -126,6 +127,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PhotoScope.BusinessLogic\PhotoScope.BusinessLogic.csproj">
+      <Project>{5dbfdd54-3ceb-479e-b86a-33b397b36482}</Project>
+      <Name>PhotoScope.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoScope.Core\PhotoScope.Core.csproj">
+      <Project>{486F6C02-6EFF-42A5-950C-A489FB797069}</Project>
+      <Name>PhotoScope.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoScope.ServiceAccessLayer\PhotoScope.ServiceAccessLayer.csproj">
+      <Project>{3c766051-3555-4a2c-8cde-016e79e99f49}</Project>
+      <Name>PhotoScope.ServiceAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoScope.Utilities.UI.Common\PhotoScope.Utilities.UI.Common.csproj">
       <Project>{8220a190-b4db-40ab-894d-073226622437}</Project>
       <Name>PhotoScope.Utilities.UI.Common</Name>

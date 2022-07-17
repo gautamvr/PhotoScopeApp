@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,16 +15,19 @@ namespace PhotoScope.DesktopUI.AppStart
 {
     internal class ConsoleBootstrapper : UnityBootstrapper
     {
-        protected override void ConfigureContainer()
+        private void LoadConfiguration(IUnityContainer container)
         {
-            base.ConfigureContainer();
-            var container = Container;
-            container.LoadConfiguration();
+            var configuration =
+                ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+            var unityConfigurationSection = (UnityConfigurationSection)configuration.GetSection("unity");
+            container.LoadConfiguration(unityConfigurationSection);
         }
 
         protected override IUnityContainer CreateContainer()
         {
-            return new UnityContainer();
+            var container = new UnityContainer();
+            LoadConfiguration(container);
+            return container;
         }
 
         protected override DependencyObject CreateShell()

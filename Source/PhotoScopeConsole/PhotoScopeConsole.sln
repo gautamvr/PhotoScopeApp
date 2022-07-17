@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.ServiceAccessLay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.Core", "src\PhotoScope.Core\PhotoScope.Core.csproj", "{486F6C02-6EFF-42A5-950C-A489FB797069}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.BusinessLogic", "src\PhotoScope.BusinessLogic\PhotoScope.BusinessLogic.csproj", "{5DBFDD54-3CEB-479E-B86A-33B397B36482}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{486F6C02-6EFF-42A5-950C-A489FB797069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{486F6C02-6EFF-42A5-950C-A489FB797069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{486F6C02-6EFF-42A5-950C-A489FB797069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBFDD54-3CEB-479E-B86A-33B397B36482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBFDD54-3CEB-479E-B86A-33B397B36482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBFDD54-3CEB-479E-B86A-33B397B36482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBFDD54-3CEB-479E-B86A-33B397B36482}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{8220A190-B4DB-40AB-894D-073226622437} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
 		{3C766051-3555-4A2C-8CDE-016E79E99F49} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
 		{486F6C02-6EFF-42A5-950C-A489FB797069} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
+		{5DBFDD54-3CEB-479E-B86A-33B397B36482} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C57CA79-FBA3-4511-A2BC-63738EAE82BD}

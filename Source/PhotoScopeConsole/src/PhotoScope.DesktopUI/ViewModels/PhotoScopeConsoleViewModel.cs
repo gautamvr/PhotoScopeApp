@@ -13,7 +13,7 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public SearchBarViewModel SearchBarViewModel { get; set; }
 
-        protected PhotoFeedViewModel FeedViewModel { get; set; }
+        public PhotoFeedViewModel FeedViewModel { get; set; }
 
         public PhotoScopeConsoleViewModel(IUnityContainer container)
         {

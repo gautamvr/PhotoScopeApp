@@ -5,18 +5,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using PhotoScope.Utilities.UI.Common.Annotations;
+using PhotoScope.Core.DTOModels;
+using PhotoScope.Utilities.UI.Common.Properties;
 
 namespace PhotoScope.Utilities.UI.Common
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : ObservableModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

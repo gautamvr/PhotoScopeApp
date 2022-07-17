@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{486F6C02-6EFF-42A5-950C-A489FB797069}</ProjectGuid>
+    <ProjectGuid>{5DBFDD54-3CEB-479E-B86A-33B397B36482}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhotoScope.Core</RootNamespace>
-    <AssemblyName>PhotoScope.Core</AssemblyName>
+    <RootNamespace>PhotoScope.BusinessLogic</RootNamespace>
+    <AssemblyName>PhotoScope.BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,17 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOModels\ObservableModel.cs" />
-    <Compile Include="DTOModels\PhotoItem.cs" />
-    <Compile Include="DTOModels\PhotoList.cs" />
-    <Compile Include="DTOModels\SearchTag.cs" />
-    <Compile Include="Interfaces\IFeedDtoPopulator.cs" />
-    <Compile Include="Interfaces\IModelProvider.cs" />
-    <Compile Include="Interfaces\IServiceAccessor.cs" />
-    <Compile Include="Interfaces\IPhotoFeedHandler.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="PhotoFeedDtoPopulator.cs" />
+    <Compile Include="PhotoFeedHandler.cs" />
+    <Compile Include="PhotoListModelProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoScope.Core\PhotoScope.Core.csproj">
+      <Project>{486F6C02-6EFF-42A5-950C-A489FB797069}</Project>
+      <Name>PhotoScope.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Unity">
+      <Version>4.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -47,5 +47,11 @@
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoScope.Core\PhotoScope.Core.csproj">
+      <Project>{486F6C02-6EFF-42A5-950C-A489FB797069}</Project>
+      <Name>PhotoScope.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
