@@ -21,19 +21,19 @@ namespace PhotoScope.ServiceAccessLayer
 
         }
 
-        public PhotoList GetImages(string keyword)
+        public FeedItemList GetImages(string keyword)
         {
-            PhotoList photoList = GetImagesFromApi(keyword).Result;
+            FeedItemList photoList = GetImagesFromApi(keyword).Result;
             return photoList;
         }
 
-        public async Task<PhotoList> GetImagesFromApi(string keyword)
+        public async Task<FeedItemList> GetImagesFromApi(string keyword)
         {
             ApiClient.DefaultRequestHeaders.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = await ApiClient.GetAsync("api/Department/1");
 
-            PhotoList photoList = new PhotoList();
+            FeedItemList photoList = new FeedItemList();
 
 
             return photoList;

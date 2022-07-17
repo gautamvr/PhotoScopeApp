@@ -4,6 +4,6 @@ namespace PhotoScope.Core.Interfaces
 {
     public interface IServiceAccessor
     {
-        PhotoList GetImages(string keyword);
+        FeedItemList GetImages(string keyword);
     }
 }

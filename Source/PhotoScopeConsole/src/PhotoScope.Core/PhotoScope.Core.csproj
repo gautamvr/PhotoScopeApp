@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOModels\ObservableModel.cs" />
-    <Compile Include="DTOModels\PhotoItem.cs" />
-    <Compile Include="DTOModels\PhotoList.cs" />
+    <Compile Include="DTOModels\FeedItem.cs" />
+    <Compile Include="DTOModels\FeedItemList.cs" />
     <Compile Include="DTOModels\SearchTag.cs" />
     <Compile Include="Interfaces\IFeedDtoPopulator.cs" />
     <Compile Include="Interfaces\IModelProvider.cs" />

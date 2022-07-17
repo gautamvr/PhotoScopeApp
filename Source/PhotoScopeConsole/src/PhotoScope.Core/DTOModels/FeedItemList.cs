@@ -4,9 +4,9 @@ using System.Security.AccessControl;
 
 namespace PhotoScope.Core.DTOModels
 {
-    public class PhotoList : ObservableModel
+    public class FeedItemList : ObservableModel
     {
-        public ObservableCollection<PhotoItem> Photos { get; set; }
+        public ObservableCollection<FeedItem> FeedItems { get; set; }
 
     }
 }

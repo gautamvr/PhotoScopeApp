@@ -2,7 +2,7 @@
 
 namespace PhotoScope.Core.DTOModels
 {
-    public class PhotoItem
+    public class FeedItem
     {
         public string ImageUri { get; set; }
         

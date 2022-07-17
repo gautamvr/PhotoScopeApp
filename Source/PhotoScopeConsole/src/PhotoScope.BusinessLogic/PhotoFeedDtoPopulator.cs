@@ -11,19 +11,19 @@ namespace PhotoScope.BusinessLogic
 {
     public class PhotoFeedDtoPopulator : IFeedDtoPopulator
     {
-        public PhotoList PhotoListDto { get; set; }
+        public FeedItemList FeedItemListDto { get; set; }
 
         private IServiceAccessor _serviceAccessor;
 
         public PhotoFeedDtoPopulator(IUnityContainer container)
         {
             _serviceAccessor = container.Resolve<IServiceAccessor>();
-            PhotoListDto = new PhotoList();
+            FeedItemListDto = new FeedItemList();
         }
 
-        public PhotoList GetPhotoList()
+        public FeedItemList GetPhotoList()
         {
-            return PhotoListDto;
+            return FeedItemListDto;
         }
     }
 }

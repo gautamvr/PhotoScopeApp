@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.Utilities.UI.Common;
 
@@ -11,35 +6,32 @@ namespace PhotoScope.DesktopUI.ViewModels
 {
     public class PhotoFeedViewModel : ViewModelBase
     {
-        private PhotoList _photoList;
+        private FeedItemList _photoList;
 
-        public PhotoList PhotoList
+        public FeedItemList PhotoList
         {
-            get { return _photoList; }
-            set
-            {
-                SetField(ref _photoList, value);
-            }
+            get => _photoList;
+            set => SetField(ref _photoList, value);
         }
 
-        private ObservableCollection<PhotoItem> _gridItems;
+        private ObservableCollection<FeedItem> _gridItems;
 
-        public ObservableCollection<PhotoItem> GridItems
+        public ObservableCollection<FeedItem> GridItems
         {
-            get { return _gridItems; }
-            set { _gridItems = value; }
+            get => _gridItems;
+            set => SetField(ref _gridItems, value);
         }
 
 
         public PhotoFeedViewModel()
         {
-            GridItems = new ObservableCollection<PhotoItem>();
-            GridItems.Add(new PhotoItem{ ImageUri = ""});
-            GridItems.Add(new PhotoItem{ ImageUri = ""});
-            GridItems.Add(new PhotoItem{ ImageUri = ""});
-            GridItems.Add(new PhotoItem{ ImageUri = ""});
-            GridItems.Add(new PhotoItem{ ImageUri = ""});
-            GridItems.Add(new PhotoItem{ ImageUri = ""});
+            GridItems = new ObservableCollection<FeedItem>();
+            GridItems.Add(new FeedItem{ ImageUri = ""});
+            GridItems.Add(new FeedItem{ ImageUri = ""});
+            GridItems.Add(new FeedItem{ ImageUri = ""});
+            GridItems.Add(new FeedItem{ ImageUri = ""});
+            GridItems.Add(new FeedItem{ ImageUri = ""});
+            GridItems.Add(new FeedItem{ ImageUri = ""});
 
         }
     }

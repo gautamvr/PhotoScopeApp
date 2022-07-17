@@ -24,7 +24,7 @@ namespace PhotoScope.BusinessLogic
         public void UpdateFeed(string searchTag)
         {
             var photoList = _serviceAccessor.GetImages(searchTag);
-            _feedPopulator.PhotoListDto = photoList;
+            _feedPopulator.FeedItemListDto = photoList;
         }
     }
 }

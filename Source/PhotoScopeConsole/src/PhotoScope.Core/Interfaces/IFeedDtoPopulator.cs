@@ -4,9 +4,9 @@ namespace PhotoScope.Core.Interfaces
 {
     public interface IFeedDtoPopulator
     {
-        PhotoList PhotoListDto { get; set; }
+        FeedItemList FeedItemListDto { get; set; }
 
-        PhotoList GetPhotoList();
+        FeedItemList GetPhotoList();
         
     }
 }
