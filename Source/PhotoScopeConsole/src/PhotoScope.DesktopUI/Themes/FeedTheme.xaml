@@ -3,16 +3,29 @@
    
     <DataTemplate x:Key="FeedItemTemplate">
         <Border Margin="2" >
-            <Border BorderBrush="Blue" BorderThickness="2">
-                <StackPanel>
-                <!--<Rectangle Fill="Blue" Width="30" Height="30" DataContext="{Binding Path=ImageUri}"></Rectangle>-->
-                <Image Stretch="None">
-                    <Image.Source>
-                        <BitmapImage UriCachePolicy="Revalidate" UriSource="{Binding Path=Url_s}"/>
-                    </Image.Source>
-                </Image>
-                <TextBlock Text="{Binding Path=Title}"></TextBlock>
+            <Border BorderThickness="2">
+                <StackPanel Orientation="Vertical">
+                    <Image Stretch="None">
+                        <Image.Source>
+                            <BitmapImage UriSource="{Binding Path=Url_s}"/>
+                        </Image.Source>
+                    </Image>
+                    <TextBlock Text="{Binding Path=Title}" Width="{Binding Path=Width}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
+                
                 </StackPanel>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="Blue" Opacity="1" BlurRadius="20"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
             </Border>
         </Border>
     </DataTemplate>
