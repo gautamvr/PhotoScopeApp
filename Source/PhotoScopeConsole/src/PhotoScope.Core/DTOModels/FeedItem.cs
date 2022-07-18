@@ -5,17 +5,22 @@ namespace PhotoScope.Core.DTOModels
 {
     public class FeedItem
     {
-        private string _imageUri;
+        //private string _imageUri;
 
-        public string ImageUri
-        {
-            get
-            {
-                _imageUri = $"https://live.staticflickr.com/{Server}/{ID}_{Secret}_m.jpg";
-                return _imageUri;
-            }
-            set { _imageUri = value; }
-        }
+        //public string ImageUri
+        //{
+        //    get
+        //    {
+        //        _imageUri = $"https://live.staticflickr.com/{Server}/{ID}_{Secret}_s.jpg";
+        //        return _imageUri;
+        //    }
+        //    set { _imageUri = value; }
+        //}
+
+        public string Url_s { get; set; }
+        public string Url_m { get; set; }
+        public string Url_l { get; set; }
+        public string Url_t { get; set; }
 
         public string ID { get; set; }
 

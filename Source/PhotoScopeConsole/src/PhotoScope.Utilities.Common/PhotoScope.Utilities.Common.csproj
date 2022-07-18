@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3C766051-3555-4A2C-8CDE-016E79E99F49}</ProjectGuid>
+    <ProjectGuid>{F8196743-2E0B-4A41-939B-043BBD3BE404}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PhotoScope.ServiceAccessLayer</RootNamespace>
-    <AssemblyName>PhotoScope.ServiceAccessLayer</AssemblyName>
+    <RootNamespace>PhotoScope.Utilities.Common</RootNamespace>
+    <AssemblyName>PhotoScope.Utilities.Common</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,19 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlickrServiceAccessor.cs" />
+    <Compile Include="ApiHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhotoScope.Core\PhotoScope.Core.csproj">
-      <Project>{486F6C02-6EFF-42A5-950C-A489FB797069}</Project>
-      <Name>PhotoScope.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PhotoScope.Utilities.Common\PhotoScope.Utilities.Common.csproj">
-      <Project>{F8196743-2E0B-4A41-939B-043BBD3BE404}</Project>
-      <Name>PhotoScope.Utilities.Common</Name>
-    </ProjectReference>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.9</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
