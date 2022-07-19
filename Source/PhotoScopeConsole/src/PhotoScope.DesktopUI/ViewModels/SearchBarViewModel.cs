@@ -1,5 +1,7 @@
 ﻿
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
@@ -12,6 +14,8 @@ namespace PhotoScope.DesktopUI.ViewModels
     {
         private string _searchWord;
         private IPhotoFeedHandler _photoFeedHandler;
+        private readonly PhotoFeedViewModel _feedViewModel;
+
 
         public string SearchWord
         {
@@ -24,14 +28,29 @@ namespace PhotoScope.DesktopUI.ViewModels
         public SearchBarViewModel(IUnityContainer container)
         {
             _photoFeedHandler = container.Resolve<IPhotoFeedHandler>();
+            _feedViewModel = container.Resolve<PhotoFeedViewModel>();
             SearchCommand = new Command(OnSearchCommand);
         }
 
-        public void OnSearchCommand(object searchKeyWord)
+        public async void OnSearchCommand(object searchKeyWord)
         {
             if (SearchWord != null && !string.IsNullOrEmpty(SearchWord))
             {
-                _photoFeedHandler.UpdateFeed(SearchWord);
+                try
+                {
+                    _feedViewModel.IsLoading = true;
+                    await _photoFeedHandler.UpdateFeed(SearchWord);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                finally
+                {
+                    _feedViewModel.IsLoading = false;
+                }
+                
             }
             
         }

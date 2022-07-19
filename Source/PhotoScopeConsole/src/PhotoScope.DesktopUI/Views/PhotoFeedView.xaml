@@ -4,9 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoScope.DesktopUI.Views"
+             xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters"
+             xmlns:ext="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d">
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -15,6 +22,10 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
+
+        <ext:ImageAwesome Grid.Row="0" Icon="CircleOutlineNotch" Width="80" Height="80" Spin="True" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
+        <TextBlock Grid.Row="1" Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="20" Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"></TextBlock>
+
 
     </Grid>
 </UserControl>

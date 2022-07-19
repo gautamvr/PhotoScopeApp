@@ -17,8 +17,9 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public PhotoScopeConsoleViewModel(IUnityContainer container)
         {
-            SearchBarViewModel = container.Resolve<SearchBarViewModel>();
             FeedViewModel = container.Resolve<PhotoFeedViewModel>();
+            SearchBarViewModel = container.Resolve<SearchBarViewModel>();
+            
 
         }
     }

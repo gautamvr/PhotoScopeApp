@@ -1,8 +1,10 @@
-﻿namespace PhotoScope.Core.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace PhotoScope.Core.Interfaces
 {
     public interface IPhotoFeedHandler
     {
-        void UpdateFeed(string searchTag);
+        Task UpdateFeed(string searchTag);
         
     }
 }

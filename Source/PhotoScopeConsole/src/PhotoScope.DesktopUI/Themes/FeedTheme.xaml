@@ -5,13 +5,14 @@
         <Border Margin="2" >
             <Border BorderThickness="2">
                 <StackPanel Orientation="Vertical">
-                    <Image Stretch="None">
-                        <Image.Source>
-                            <BitmapImage UriSource="{Binding Path=Url_s}"/>
-                        </Image.Source>
-                    </Image>
-                    <TextBlock Text="{Binding Path=Title}" Width="{Binding Path=Width}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
-                
+                    <Border Height="130">
+                        <Image Stretch="Uniform" Name="FeedItem">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Path=Url_s}"/>
+                            </Image.Source>
+                        </Image>
+                    </Border>
+                    <TextBlock Text="{Binding Path=Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
                 </StackPanel>
                 <Border.Style>
                     <Style TargetType="{x:Type Border}">

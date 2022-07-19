@@ -24,7 +24,7 @@ namespace PhotoScope.BusinessLogic
             _feedPopulator = _container.Resolve<IFeedDtoPopulator>();
         }
 
-        public async void UpdateFeed(string searchTag)
+        public async Task UpdateFeed(string searchTag)
         {
             var photoList = await _serviceAccessor.GetImagesAsync(searchTag);
 

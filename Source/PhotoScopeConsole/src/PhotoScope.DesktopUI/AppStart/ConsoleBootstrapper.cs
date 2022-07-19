@@ -27,6 +27,7 @@ namespace PhotoScope.DesktopUI.AppStart
         {
             var container = new UnityContainer();
             LoadConfiguration(container);
+            container.RegisterType<PhotoFeedViewModel>(new ContainerControlledLifetimeManager());
             return container;
         }
 

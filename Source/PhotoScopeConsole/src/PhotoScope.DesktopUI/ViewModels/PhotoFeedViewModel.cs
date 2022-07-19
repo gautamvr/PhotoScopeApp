@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
@@ -13,11 +14,21 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public PhotoFeedViewModel(IUnityContainer container)
         {
+            IsLoading = false;
             _modelProvider = container.Resolve<IModelProvider<Feed>>();
-
             Feed = _modelProvider.GetInitialModel();
             GridItems = Feed?.FeedItems;
+        }
 
+        private bool _isLoading;
+
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                SetField(ref _isLoading, value);
+            }
         }
 
         public Feed Feed
