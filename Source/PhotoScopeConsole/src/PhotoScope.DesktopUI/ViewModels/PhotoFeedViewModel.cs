@@ -14,9 +14,9 @@ namespace PhotoScope.DesktopUI.ViewModels
         public PhotoFeedViewModel(IUnityContainer container)
         {
             _modelProvider = container.Resolve<IModelProvider<Feed>>();
-            _feed = _modelProvider.GetInitialModel();
 
-            GridItems = Feed?.Photos?.Photo;
+            Feed = _modelProvider.GetInitialModel();
+            GridItems = Feed?.FeedItems;
 
         }
 

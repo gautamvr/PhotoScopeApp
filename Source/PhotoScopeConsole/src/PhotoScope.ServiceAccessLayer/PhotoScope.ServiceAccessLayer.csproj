@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\PhotoItem.cs" />
+    <Compile Include="Data\PhotoList.cs" />
+    <Compile Include="Data\ResultModel.cs" />
     <Compile Include="FlickrServiceAccessor.cs" />
+    <Compile Include="Interfaces\IServiceAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

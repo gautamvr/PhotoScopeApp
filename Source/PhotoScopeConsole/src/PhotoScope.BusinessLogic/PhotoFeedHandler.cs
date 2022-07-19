@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
+using PhotoScope.ServiceAccessLayer.Data;
+using PhotoScope.ServiceAccessLayer.Interfaces;
 
 namespace PhotoScope.BusinessLogic
 {
@@ -24,22 +26,35 @@ namespace PhotoScope.BusinessLogic
 
         public async void UpdateFeed(string searchTag)
         {
-            var photoList = await _serviceAccessor.GetImages(searchTag);
+            var photoList = await _serviceAccessor.GetImagesAsync(searchTag);
 
             ProcessImages(photoList);
         }
 
-        private void ProcessImages(Feed photoList)
+        private void ProcessImages(PhotoList photoList)
         {
-            var photoItems = photoList.Photos?.Photo;
-
-            if (photoItems != null)
+            if (photoList != null)
             {
-                foreach (var feedItem in photoItems)
+                foreach (var photoItem in photoList.Photo)
                 {
-                    _feedPopulator.FeedDto.Photos.Photo.Add(feedItem);
+                    var feedItem=CreateFeedItem(photoItem);
+                    _feedPopulator.FeedDto.FeedItems.Add(feedItem);
                 }
             }
+        }
+
+        private FeedItem CreateFeedItem(PhotoItem photo)
+        {
+            return new FeedItem
+            {
+                ID = photo.ID,
+                Title = photo.Title,
+                Url_l = photo.Url_l,
+                Url_s = photo.Url_s,
+                Url_m = photo.Url_m,
+                Url_t = photo.Url_t,
+                Owner = photo.Owner
+            };
         }
     }
 }

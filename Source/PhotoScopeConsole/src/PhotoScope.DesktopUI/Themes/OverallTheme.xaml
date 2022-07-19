@@ -4,9 +4,6 @@
     <SolidColorBrush x:Key="PrimaryBorder" Color="#547AFF"/>
 
 
-
-
-
     <Style TargetType="Button">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="{StaticResource PrimaryBorder}"/>

@@ -6,7 +6,7 @@ namespace PhotoScope.Core.Interfaces
     {
         Feed FeedDto { get; set; }
 
-        Feed GetPhotoList();
+        Feed GetFeedModel();
         
     }
 }

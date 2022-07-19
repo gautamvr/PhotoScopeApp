@@ -51,6 +51,10 @@
       <Project>{486F6C02-6EFF-42A5-950C-A489FB797069}</Project>
       <Name>PhotoScope.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhotoScope.ServiceAccessLayer\PhotoScope.ServiceAccessLayer.csproj">
+      <Project>{3C766051-3555-4A2C-8CDE-016E79E99F49}</Project>
+      <Name>PhotoScope.ServiceAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Unity">

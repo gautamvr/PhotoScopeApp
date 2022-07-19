@@ -14,18 +14,13 @@ namespace PhotoScope.BusinessLogic
     {
         public Feed FeedDto { get; set; }
 
-        private IServiceAccessor _serviceAccessor;
-
         public PhotoFeedDtoPopulator(IUnityContainer container)
         {
-            _serviceAccessor = container.Resolve<IServiceAccessor>();
-
             FeedDto = new Feed();
-            FeedDto.Photos = new FeedItemList();
-            FeedDto.Photos.Photo = new ObservableCollection<FeedItem>();
+            FeedDto.FeedItems = new ObservableCollection<FeedItem>();
         }
 
-        public Feed GetPhotoList()
+        public Feed GetFeedModel()
         {
             return FeedDto;
         }
