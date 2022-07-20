@@ -4,6 +4,6 @@ namespace PhotoScope.ServiceAccessLayer.Data
 {
     public class PhotoList
     {
-        public IList<PhotoItem> Photo { get; set; }
+        public IEnumerable<PhotoItem> Photo { get; set; }
     }
 }

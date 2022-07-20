@@ -8,5 +8,7 @@ namespace PhotoScope.Core.DTOModels
     {
         public ObservableCollection<FeedItem> FeedItems { get; set; }
 
+        public int CurrentPage { get; set; }
+
     }
 }

@@ -24,11 +24,15 @@ namespace PhotoScope.BusinessLogic
             _feedPopulator = _container.Resolve<IFeedDtoPopulator>();
         }
 
-        public async Task UpdateFeed(string searchTag)
+        public async Task UpdateFeedAsync(string searchTag)
         {
-            var photoList = await _serviceAccessor.GetImagesAsync(searchTag);
+            _feedPopulator.FeedDto.FeedItems.Clear();
 
-            ProcessImages(photoList);
+            if (!string.IsNullOrEmpty(searchTag))
+            {
+                var photoList = await _serviceAccessor.GetImagesAsync(searchTag);
+                ProcessImages(photoList);
+            }
         }
 
         private void ProcessImages(PhotoList photoList)

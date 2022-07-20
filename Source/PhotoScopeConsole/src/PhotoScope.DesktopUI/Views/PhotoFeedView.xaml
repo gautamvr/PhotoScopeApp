@@ -13,14 +13,25 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}" >
+        <ScrollViewer Grid.RowSpan="2"
+                      VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <StackPanel>
+                            <ItemsPresenter />
+                            <Button Content="Show more" Style="{StaticResource DefaultButtonStyle}" 
+                                    Visibility="{Binding IsContentLoaded, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </ItemsControl.Template>
             </ItemsControl>
+
         </ScrollViewer>
 
         <ext:ImageAwesome Grid.Row="0" Icon="CircleOutlineNotch" Width="80" Height="80" Spin="True" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>

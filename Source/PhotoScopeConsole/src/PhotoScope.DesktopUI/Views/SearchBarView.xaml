@@ -4,19 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoScope.DesktopUI.Views"
+             xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters"
              mc:Ignorable="d" >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Border Margin="10 0" 
+                BorderBrush="{Binding ElementName=SearchTextBox, Path=BorderBrush}"
+                BorderThickness="2" Height="32" 
+                CornerRadius="5" 
+                SnapsToDevicePixels="True">
 
-        <TextBox Grid.Column="0" MinWidth="200" Margin="10" Text="{Binding Path=SearchWord, UpdateSourceTrigger=PropertyChanged}">
-            <TextBox.InputBindings>
-                <KeyBinding Command="{Binding SearchCommand}" Key="Enter"/>
-            </TextBox.InputBindings>
-        </TextBox>
-        <Button Grid.Column="1" Command="{Binding SearchCommand}" Content="Search"/>
-            
+            <StackPanel Orientation="Horizontal" Width="Auto">
+                <Grid VerticalAlignment="Stretch">
+                    <TextBox Name="SearchTextBox"
+                             Width="240" Height="32"
+                             Text="{Binding Path=SearchWord, UpdateSourceTrigger=PropertyChanged}" 
+                             BorderThickness="0" Padding="10,7,0,0">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding SearchCommand}" Key="Enter"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <TextBlock Text="Enter Search Tag here" 
+                               Margin="20,0"
+                               Height="32"
+                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                               Foreground="Gray" Background="White"
+                               Visibility="{Binding Path=IsValuePresent, 
+                                            Converter={x:Static converter:InverseBoolToVisibilityConverter.Instance}}"
+                               FontSize="16" FontFamily="Calibri" FontWeight="Normal" FontStyle="Italic"
+                               Padding="0,6,0,0"/>
+                </Grid>
+
+                <Button Command="{Binding ResetCommand}" Style="{StaticResource IconButtonStyle}"
+                        Visibility="{Binding Path=IsValuePresent, 
+                                    Converter={x:Static converter:BoolToVisibilityConverter.Instance}}">
+                    <Image Source="{StaticResource CrossIcon}"/>
+                </Button>
+
+                <Button Command="{Binding SearchCommand}" Style="{StaticResource DefaultButtonStyle}"
+                        Content="Search"/>
+
+            </StackPanel>
+        </Border>
+        
     </Grid>
 </UserControl>

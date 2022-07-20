@@ -2,7 +2,7 @@
 
 namespace PhotoScope.Core.DTOModels
 {
-    public class SearchParameter : ObservableModel
+    public class SearchConfigurations : ObservableModel
     {
         public string KeyWord { get; set; }
 

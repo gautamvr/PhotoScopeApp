@@ -44,10 +44,11 @@
     <Compile Include="DTOModels\ObservableModel.cs" />
     <Compile Include="DTOModels\FeedItem.cs" />
     <Compile Include="DTOModels\Feed.cs" />
-    <Compile Include="DTOModels\SearchParameter.cs" />
+    <Compile Include="DTOModels\SearchContext.cs" />
     <Compile Include="Interfaces\IFeedDtoPopulator.cs" />
     <Compile Include="Interfaces\IModelProvider.cs" />
     <Compile Include="Interfaces\IPhotoFeedHandler.cs" />
+    <Compile Include="Interfaces\IQueryController.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

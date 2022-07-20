@@ -16,43 +16,59 @@ namespace PhotoScope.DesktopUI.ViewModels
         private IPhotoFeedHandler _photoFeedHandler;
         private readonly PhotoFeedViewModel _feedViewModel;
 
+        private bool _isValuePresent;
+
+        public bool IsValuePresent
+        {
+            get { return _isValuePresent; }
+            set { SetField(ref _isValuePresent, value); }
+        }
 
         public string SearchWord
         {
             get => _searchWord;
-            set => SetField(ref _searchWord, value);
+            set
+            {
+                SetField(ref _searchWord, value);
+                IsValuePresent = !string.IsNullOrEmpty(_searchWord) && _searchWord.Length >= 1;
+            }
         }
 
         public ICommand SearchCommand { get; set; }
+
+        public ICommand ResetCommand { get; set; }
 
         public SearchBarViewModel(IUnityContainer container)
         {
             _photoFeedHandler = container.Resolve<IPhotoFeedHandler>();
             _feedViewModel = container.Resolve<PhotoFeedViewModel>();
             SearchCommand = new Command(OnSearchCommand);
+            ResetCommand = new Command(OnResetCommand);
+        }
+
+        private void OnResetCommand(object obj)
+        {
+            SearchWord = "";
+            SearchCommand.Execute(null);
+
         }
 
         public async void OnSearchCommand(object searchKeyWord)
         {
-            if (SearchWord != null && !string.IsNullOrEmpty(SearchWord))
+            try
             {
-                try
-                {
-                    _feedViewModel.IsLoading = true;
-                    await _photoFeedHandler.UpdateFeed(SearchWord);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-                finally
-                {
-                    _feedViewModel.IsLoading = false;
-                }
-                
+                _feedViewModel.IsLoading = true;
+                await _photoFeedHandler.UpdateFeedAsync(SearchWord);
             }
-            
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                _feedViewModel.IsLoading = false;
+            }
         }
     }
 }
