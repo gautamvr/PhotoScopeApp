@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
@@ -13,12 +15,18 @@ namespace PhotoScope.DesktopUI.ViewModels
     {
         private Feed _feed;
         private IModelProvider<Feed> _modelProvider;
+        private IFeedController _feedController;
+
+        public ICommand ShowMore { get; set; }
 
         public PhotoFeedViewModel(IUnityContainer container)
         {
             IsLoading = false;
             IsContentLoaded = false;
             _modelProvider = container.Resolve<IModelProvider<Feed>>();
+            _feedController = container.Resolve<IFeedController>();
+            ShowMore = new Command(OnShowMore);
+
             Feed = _modelProvider.GetInitialModel();
             GridItems = Feed?.FeedItems;
 
@@ -26,6 +34,25 @@ namespace PhotoScope.DesktopUI.ViewModels
             {
                 GridItems.CollectionChanged += OnGridItemsChanged;
             }
+        }
+
+        private async void OnShowMore(object obj)
+        {
+            try
+            {
+                IsLoading = true;
+                await _feedController.LoadMore();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+            
         }
 
         private void OnGridItemsChanged(object sender, NotifyCollectionChangedEventArgs e)

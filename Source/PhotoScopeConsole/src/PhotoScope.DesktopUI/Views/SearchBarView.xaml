@@ -9,35 +9,33 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Border Margin="10 0" 
+        <TextBlock Text="Enter Search Tag here : " 
+                   Margin="20,0"
+                   Height="32"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Foreground="Black"
+                   FontSize="16" FontFamily="Calibri" FontWeight="Normal"
+                   Padding="0,6,0,0"/>
+        <Border Grid.Column="1" Margin="10 0" 
                 BorderBrush="{Binding ElementName=SearchTextBox, Path=BorderBrush}"
                 BorderThickness="2" Height="32" 
                 CornerRadius="5" 
                 SnapsToDevicePixels="True">
 
             <StackPanel Orientation="Horizontal" Width="Auto">
-                <Grid VerticalAlignment="Stretch">
-                    <TextBox Name="SearchTextBox"
-                             Width="240" Height="32"
-                             Text="{Binding Path=SearchWord, UpdateSourceTrigger=PropertyChanged}" 
-                             BorderThickness="0" Padding="10,7,0,0">
-                        <TextBox.InputBindings>
-                            <KeyBinding Command="{Binding SearchCommand}" Key="Enter"/>
-                        </TextBox.InputBindings>
-                    </TextBox>
-                    <TextBlock Text="Enter Search Tag here" 
-                               Margin="20,0"
-                               Height="32"
-                               VerticalAlignment="Center" HorizontalAlignment="Left"
-                               Foreground="Gray" Background="White"
-                               Visibility="{Binding Path=IsValuePresent, 
-                                            Converter={x:Static converter:InverseBoolToVisibilityConverter.Instance}}"
-                               FontSize="16" FontFamily="Calibri" FontWeight="Normal" FontStyle="Italic"
-                               Padding="0,6,0,0"/>
-                </Grid>
+                
+                <TextBox Name="SearchTextBox"
+                         Width="140" Height="32"
+                         Text="{Binding Path=SearchParameters.SearchTag, UpdateSourceTrigger=PropertyChanged}"
+                         Padding="10,7,0,0">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding SearchCommand}" Key="Enter"/>
+                    </TextBox.InputBindings>
+                </TextBox>
 
                 <Button Command="{Binding ResetCommand}" Style="{StaticResource IconButtonStyle}"
                         Visibility="{Binding Path=IsValuePresent, 
@@ -50,6 +48,37 @@
 
             </StackPanel>
         </Border>
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <TextBlock Text="Items per page : " 
+                       Margin="20,0"
+                       Height="32"
+                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Foreground="Black"
+                       FontSize="16" FontFamily="Calibri" FontWeight="Normal"
+                       Padding="0,6,0,0"/>
+            <TextBox Width="50" Height="32" 
+                     Padding="10,7,0,0"
+                     Text="{Binding SearchParameters.ItemsPerPage, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource {x:Type TextBox}}"/>
+
+        </StackPanel>
+        <StackPanel Grid.Column="3" Orientation="Horizontal">
+            <TextBlock Text="Text to search : " 
+                       Margin="20,0"
+                       Height="32"
+                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Foreground="Black"
+                       FontSize="16" FontFamily="Calibri" FontWeight="Normal"
+                       Padding="0,6,0,0"/>
+            <TextBox Width="50" Height="32" 
+                     Padding="10,7,0,0"
+                     Text="{Binding SearchParameters.SearchText, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource {x:Type TextBox}}"/>
+
+        </StackPanel>
+        
+
+
         
     </Grid>
 </UserControl>

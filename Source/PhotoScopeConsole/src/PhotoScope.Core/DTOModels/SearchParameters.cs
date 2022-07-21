@@ -4,7 +4,8 @@
     {
         #region Private Properties
 
-        private string _keyWord;
+        private string _searchTag;
+        private string _searchText;
         private int _itemsPerPage;
         private int _currentPage;
 
@@ -12,10 +13,16 @@
 
         #region Public Properties
 
-        public string KeyWord
+        public string SearchTag
         {
-            get => _keyWord;
-            set => SetField(ref _keyWord,value);
+            get => _searchTag;
+            set => SetField(ref _searchTag,value);
+        }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set => SetField(ref _searchText, value);
         }
 
         public int ItemsPerPage

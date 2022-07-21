@@ -25,6 +25,7 @@ namespace PhotoScope.BusinessLogic
             _feedPopulator.ClearFeed();
             var searchConfig = _searchConfigStore.GetSearchConfig();
             var feedItems = await _feedItemAccessor.GetFeedItems(searchConfig);
+            _feedPopulator.ClearFeed();
             _feedPopulator.AddToFeed(feedItems.ToList());
         }
 

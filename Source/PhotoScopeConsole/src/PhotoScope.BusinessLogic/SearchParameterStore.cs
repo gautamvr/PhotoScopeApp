@@ -17,8 +17,9 @@ namespace PhotoScope.BusinessLogic
             SearchConfig = new SearchParameters
             {
                 CurrentPage = 1,
-                ItemsPerPage = 30,
-                KeyWord = "dog"
+                ItemsPerPage = 10,
+                SearchTag = "",
+                SearchText = ""
             };
         }
 

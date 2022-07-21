@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,9 +13,17 @@ namespace PhotoScope.DesktopUI.ViewModels
 {
     public class SearchBarViewModel : ViewModelBase
     {
-        private string _searchWord;
         private IFeedController _photoFeedHandler;
-        private readonly PhotoFeedViewModel _feedViewModel;
+        private IModelProvider<SearchParameters> _modelProvider;
+        private PhotoFeedViewModel _feedViewModel;
+
+        private SearchParameters _searchParameters;
+
+        public SearchParameters SearchParameters
+        {
+            get { return _searchParameters; }
+            set { SetField(ref _searchParameters, value); }
+        }
 
         private bool _isValuePresent;
 
@@ -22,16 +31,6 @@ namespace PhotoScope.DesktopUI.ViewModels
         {
             get { return _isValuePresent; }
             set { SetField(ref _isValuePresent, value); }
-        }
-
-        public string SearchWord
-        {
-            get => _searchWord;
-            set
-            {
-                SetField(ref _searchWord, value);
-                IsValuePresent = !string.IsNullOrEmpty(_searchWord) && _searchWord.Length >= 1;
-            }
         }
 
         public ICommand SearchCommand { get; set; }
@@ -42,14 +41,24 @@ namespace PhotoScope.DesktopUI.ViewModels
         {
             _photoFeedHandler = container.Resolve<IFeedController>();
             _feedViewModel = container.Resolve<PhotoFeedViewModel>();
+            _modelProvider = container.Resolve<IModelProvider<SearchParameters>>();
+
+            SearchParameters = _modelProvider.GetInitialModel();
+            SearchParameters.PropertyChanged += OnSearchParametersChanged;
+
             SearchCommand = new Command(OnSearchCommand);
             ResetCommand = new Command(OnResetCommand);
         }
 
+        private void OnSearchParametersChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var keyWord = SearchParameters.SearchTag;
+            IsValuePresent = !string.IsNullOrEmpty(keyWord) && keyWord.Length > 0;
+        }
+
         private void OnResetCommand(object obj)
         {
-            SearchWord = "";
-            SearchCommand.Execute(null);
+            SearchParameters.SearchTag = "";
 
         }
 

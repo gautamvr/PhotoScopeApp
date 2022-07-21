@@ -21,6 +21,8 @@ namespace PhotoScope.ServiceAccessLayer.Interfaces
 
         void SetSearchTags(List<string> tags);
 
+        void SetSearchText(string text);
+
         void SetItemsPerPageQuery(int itemsPerPage);
 
         void SetCurrentPageQuery(int currentPage);

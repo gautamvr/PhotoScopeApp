@@ -40,7 +40,8 @@ namespace PhotoScope.ServiceAccessLayer
         {
             _queryBuilder.SetApiKey(apiKey);
             _queryBuilder.AddGetImageMethodQuery();
-            _queryBuilder.SetSearchTags(new List<string>{searchConfig.KeyWord});
+            _queryBuilder.SetSearchTags(new List<string>{searchConfig.SearchTag});
+            _queryBuilder.SetSearchText(searchConfig.SearchText);
             _queryBuilder.SetItemsPerPageQuery(searchConfig.ItemsPerPage);
             _queryBuilder.SetCurrentPageQuery(searchConfig.CurrentPage);
             _queryBuilder.SetSafeSearchQuery(1);

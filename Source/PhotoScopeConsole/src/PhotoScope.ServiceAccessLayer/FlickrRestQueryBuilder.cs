@@ -49,6 +49,14 @@ namespace PhotoScope.ServiceAccessLayer
             _parametersList.Add($"photo_id={photoId}");
         }
 
+        public void SetSearchText(string text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                _parametersList.Add($"text={text}");
+            }
+        }
+
         public void SetSearchTags(List<string> tags)
         {
             if (tags != null && tags.Count > 0)
@@ -62,7 +70,7 @@ namespace PhotoScope.ServiceAccessLayer
         {
             if (itemsPerPage > 0)
             {
-                _parametersList.Add("per_page=30");
+                _parametersList.Add($"per_page={itemsPerPage}");
             }
         }
 
