@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace PhotoScope.Core.DtoModels
+namespace PhotoScope.Core.DTOModels
 {
     public class BaseObservableCollection : ObservableCollection<BaseModel>
     {

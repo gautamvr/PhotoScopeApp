@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using PhotoScope.Core.DtoModels;
 
 namespace PhotoScope.Core.DTOModels
 {

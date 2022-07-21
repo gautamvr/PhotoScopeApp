@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
-using PhotoScope.Core.DtoModels;
+using PhotoScope.Core.DTOModels;
 using PhotoScope.ServiceAccessLayer.Data;
 using PhotoScope.ServiceAccessLayer.Interfaces;
 using PhotoScope.Utilities.Common;
@@ -33,7 +33,7 @@ namespace PhotoScope.ServiceAccessLayer
             throw new NotImplementedException();
         }
 
-        public async Task<PhotoList> GetImagesAsync(SearchConfig keyword)
+        public async Task<PhotoList> GetImagesAsync(SearchParameters keyword)
         {
             var query = _queryManager.GetImageQuery(_apiKey, keyword);
 

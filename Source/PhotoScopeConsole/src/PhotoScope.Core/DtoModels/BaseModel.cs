@@ -1,7 +1,6 @@
 ﻿using System;
-using PhotoScope.Core.DTOModels;
 
-namespace PhotoScope.Core.DtoModels
+namespace PhotoScope.Core.DTOModels
 {
     /// <summary>
     ///     This is the abstract base class from every model class should extend.

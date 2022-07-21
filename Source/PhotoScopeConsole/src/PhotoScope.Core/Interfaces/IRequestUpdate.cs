@@ -1,9 +1,9 @@
-﻿using PhotoScope.Core.DtoModels;
+﻿using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.Core.Interfaces
 {
     public interface IRequestUpdate
     { 
-        bool RequestUpdateConfig(SearchConfig updatedConfig);
+        bool RequestUpdateConfig(SearchParameters updatedConfig);
     }
 }

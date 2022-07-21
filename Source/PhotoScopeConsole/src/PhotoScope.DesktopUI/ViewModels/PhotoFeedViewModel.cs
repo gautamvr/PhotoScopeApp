@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Microsoft.Practices.Unity;
-using PhotoScope.Core.DtoModels;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
 using PhotoScope.Utilities.UI.Common;

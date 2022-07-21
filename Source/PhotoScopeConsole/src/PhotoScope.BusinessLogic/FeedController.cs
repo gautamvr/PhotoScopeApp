@@ -11,13 +11,13 @@ namespace PhotoScope.BusinessLogic
     {
         private IFeedItemAccessor _feedItemAccessor;
         private IFeedDtoPopulator _feedPopulator;
-        private ISearchConfigStore _searchConfigStore;
+        private ISearchParameterStore _searchConfigStore;
 
         public FeedController(IUnityContainer container)
         {
             _feedItemAccessor = container.Resolve<IFeedItemAccessor>();
             _feedPopulator = container.Resolve<IFeedDtoPopulator>();
-            _searchConfigStore = container.Resolve<ISearchConfigStore>();
+            _searchConfigStore = container.Resolve<ISearchParameterStore>();
         }
 
         public async Task UpdateFeed()

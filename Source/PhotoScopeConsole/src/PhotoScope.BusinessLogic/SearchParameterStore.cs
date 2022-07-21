@@ -4,30 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoScope.BusinessLogic.Interfaces;
-using PhotoScope.Core.DtoModels;
+using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.BusinessLogic
 {
-    public class SearchConfigStore : ISearchConfigStore
+    public class SearchParameterStore : ISearchParameterStore
     {
-        public SearchConfig SearchConfig { get; private set; }
+        public SearchParameters SearchConfig { get; private set; }
 
-        public SearchConfigStore()
+        public SearchParameterStore()
         {
-            SearchConfig = new SearchConfig
+            SearchConfig = new SearchParameters
             {
                 CurrentPage = 1,
                 ItemsPerPage = 30,
-                KeyWord = ""
+                KeyWord = "dog"
             };
         }
 
-        public void UpdateSearchConfig(SearchConfig searchConfig)
+        public void UpdateSearchConfig(SearchParameters searchConfig)
         {
             SearchConfig = searchConfig;
         }
 
-        public SearchConfig GetSearchConfig()
+        public SearchParameters GetSearchConfig()
         {
             return SearchConfig;
         }

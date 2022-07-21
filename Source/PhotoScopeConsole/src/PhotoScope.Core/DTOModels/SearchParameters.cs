@@ -1,8 +1,6 @@
-﻿using PhotoScope.Core.DTOModels;
-
-namespace PhotoScope.Core.DtoModels
+﻿namespace PhotoScope.Core.DTOModels
 {
-    public class SearchConfig : ObservableModel
+    public class SearchParameters : ObservableModel
     {
         #region Private Properties
 

@@ -41,14 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DtoModels\BaseModel.cs" />
-    <Compile Include="DtoModels\ObservableModel.cs" />
-    <Compile Include="DtoModels\FeedItem.cs" />
-    <Compile Include="DtoModels\Feed.cs" />
-    <Compile Include="DtoModels\SearchConfig.cs" />
-    <Compile Include="DtoModels\BaseObservableCollection.cs" />
-    <Compile Include="DtoModels\SearchTagItem.cs" />
-    <Compile Include="Interfaces\IFeedItemAccessor.cs" />
+    <Compile Include="DTOModels\BaseModel.cs" />
+    <Compile Include="DTOModels\ObservableModel.cs" />
+    <Compile Include="DTOModels\FeedItem.cs" />
+    <Compile Include="DTOModels\Feed.cs" />
+    <Compile Include="DTOModels\SearchParameters.cs" />
+    <Compile Include="DTOModels\BaseObservableCollection.cs" />
+    <Compile Include="DTOModels\SearchTagItem.cs" />
     <Compile Include="Interfaces\IModelProvider.cs" />
     <Compile Include="Interfaces\IFeedController.cs" />
     <Compile Include="Interfaces\IRequestUpdate.cs" />

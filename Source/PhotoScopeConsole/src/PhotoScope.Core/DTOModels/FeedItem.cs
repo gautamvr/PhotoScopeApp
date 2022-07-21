@@ -1,4 +1,4 @@
-﻿using PhotoScope.Core.DtoModels;
+﻿using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.Core.DTOModels
 {

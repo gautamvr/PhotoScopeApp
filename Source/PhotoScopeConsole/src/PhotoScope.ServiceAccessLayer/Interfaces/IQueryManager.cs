@@ -1,4 +1,4 @@
-﻿using PhotoScope.Core.DtoModels;
+﻿using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.ServiceAccessLayer.Interfaces
 {
@@ -10,8 +10,8 @@ namespace PhotoScope.ServiceAccessLayer.Interfaces
 
         void UpdateQueryBuilder(IQueryBuilder queryBuilder);
 
-        string GetImageQuery(string apiKey, SearchConfig searchConfig);
+        string GetImageQuery(string apiKey, SearchParameters searchConfig);
 
-        string GetCommentsQuery(string apiKey, SearchConfig searchConfig);
+        string GetCommentsQuery(string apiKey, SearchParameters searchConfig);
     }
 }

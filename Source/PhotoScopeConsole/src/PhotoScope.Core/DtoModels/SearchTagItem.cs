@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoScope.Core.DtoModels
+namespace PhotoScope.Core.DTOModels
 {
     public class SearchTagItem : BaseModel
     {

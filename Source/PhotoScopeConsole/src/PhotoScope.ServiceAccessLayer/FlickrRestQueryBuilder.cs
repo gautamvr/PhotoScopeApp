@@ -53,9 +53,8 @@ namespace PhotoScope.ServiceAccessLayer
         {
             if (tags != null && tags.Count > 0)
             {
-                string parameterName = "tag";
                 var values = string.Join(",", tags);
-                _parametersList.Add($"{parameterName}={values}");
+                _parametersList.Add($"tags={values}");
             }
         }
 
@@ -82,10 +81,10 @@ namespace PhotoScope.ServiceAccessLayer
 
         public string Build()
         {
-            string result= string.Empty;
+            string result= "rest/?";
             if (_parametersList.Count > 0)
             {
-                result = string.Join("&", _parametersList);
+                result += string.Join("&", _parametersList);
             }
             Reset();
             return result;

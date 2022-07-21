@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
-using PhotoScope.Core.DtoModels;
+using PhotoScope.BusinessLogic.Interfaces;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
 using PhotoScope.ServiceAccessLayer.Data;
@@ -19,9 +21,14 @@ namespace PhotoScope.BusinessLogic
         public PhotoItemAccessor(IUnityContainer container)
         {
             _serviceAccessor = container.Resolve<IServiceAccessor>();
+
+            var configuration = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+            
+            var apiKey  = configuration.AppSettings.Settings["APIKey"].Value;
+            _serviceAccessor.SetApiKey(apiKey);
         }
 
-        public async Task<IEnumerable<FeedItem>> GetFeedItems(SearchConfig searchConfig)
+        public async Task<IEnumerable<FeedItem>> GetFeedItems(SearchParameters searchConfig)
         {
             var photos = await _serviceAccessor.GetImagesAsync(searchConfig);
             return ProcessImages(photos);

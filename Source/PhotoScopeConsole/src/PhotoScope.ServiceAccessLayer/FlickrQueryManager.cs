@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
-using PhotoScope.Core.DtoModels;
+using PhotoScope.Core.DTOModels;
 using PhotoScope.ServiceAccessLayer.Interfaces;
 
 namespace PhotoScope.ServiceAccessLayer
@@ -22,7 +22,7 @@ namespace PhotoScope.ServiceAccessLayer
         public FlickrQueryManager(IUnityContainer container)
         {
             QueryBuilder = container.Resolve<IQueryBuilder>();
-            _baseAddress = "https://api.flickr.com/services/rest/?";
+            _baseAddress = "https://api.flickr.com/services/";
         }
 
 
@@ -36,13 +36,13 @@ namespace PhotoScope.ServiceAccessLayer
             QueryBuilder = queryBuilder;
         }
 
-        public string GetImageQuery(string apiKey, SearchConfig searchConfig)
+        public string GetImageQuery(string apiKey, SearchParameters searchConfig)
         {
             _queryBuilder.SetApiKey(apiKey);
             _queryBuilder.AddGetImageMethodQuery();
             _queryBuilder.SetSearchTags(new List<string>{searchConfig.KeyWord});
             _queryBuilder.SetItemsPerPageQuery(searchConfig.ItemsPerPage);
-            _queryBuilder.SetItemsPerPageQuery(searchConfig.CurrentPage);
+            _queryBuilder.SetCurrentPageQuery(searchConfig.CurrentPage);
             _queryBuilder.SetSafeSearchQuery(1);
             _queryBuilder.SetExtras("url_t,url_s,url_l,url_m");
             _queryBuilder.SetFormat("json");
@@ -52,7 +52,7 @@ namespace PhotoScope.ServiceAccessLayer
 
         }
 
-        public string GetCommentsQuery(string apiKey, SearchConfig searchConfig)
+        public string GetCommentsQuery(string apiKey, SearchParameters searchConfig)
         {
             _queryBuilder.SetApiKey(apiKey);
             _queryBuilder.AddGetCommentsMethodQuery();
