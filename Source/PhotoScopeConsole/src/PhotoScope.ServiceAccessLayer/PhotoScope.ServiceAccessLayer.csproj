@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\PhotoItem.cs" />
+    <Compile Include="Data\PhotoModel.cs" />
     <Compile Include="Data\PhotoList.cs" />
     <Compile Include="Data\ResultModel.cs" />
+    <Compile Include="FlickrQueryManager.cs" />
+    <Compile Include="FlickrRestQueryBuilder.cs" />
     <Compile Include="FlickrServiceAccessor.cs" />
+    <Compile Include="Interfaces\IQueryBuilder.cs" />
+    <Compile Include="Interfaces\IQueryManager.cs" />
     <Compile Include="Interfaces\IServiceAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +63,10 @@
       <Name>PhotoScope.Utilities.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Unity">
+      <Version>4.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

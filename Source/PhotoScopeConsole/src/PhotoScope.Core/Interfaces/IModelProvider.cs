@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using PhotoScope.Core.DTOModels;
+﻿using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.Core.Interfaces
 {

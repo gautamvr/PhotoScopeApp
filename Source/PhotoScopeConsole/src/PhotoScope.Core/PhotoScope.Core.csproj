@@ -41,14 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOModels\ObservableModel.cs" />
-    <Compile Include="DTOModels\FeedItem.cs" />
-    <Compile Include="DTOModels\Feed.cs" />
-    <Compile Include="DTOModels\SearchContext.cs" />
-    <Compile Include="Interfaces\IFeedDtoPopulator.cs" />
+    <Compile Include="DtoModels\BaseModel.cs" />
+    <Compile Include="DtoModels\ObservableModel.cs" />
+    <Compile Include="DtoModels\FeedItem.cs" />
+    <Compile Include="DtoModels\Feed.cs" />
+    <Compile Include="DtoModels\SearchConfig.cs" />
+    <Compile Include="DtoModels\BaseObservableCollection.cs" />
+    <Compile Include="DtoModels\SearchTagItem.cs" />
+    <Compile Include="Interfaces\IFeedItemAccessor.cs" />
     <Compile Include="Interfaces\IModelProvider.cs" />
-    <Compile Include="Interfaces\IPhotoFeedHandler.cs" />
-    <Compile Include="Interfaces\IQueryController.cs" />
+    <Compile Include="Interfaces\IFeedController.cs" />
+    <Compile Include="Interfaces\IRequestUpdate.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

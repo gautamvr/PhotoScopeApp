@@ -1,14 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Security.AccessControl;
+﻿using System.Collections.ObjectModel;
+using PhotoScope.Core.DtoModels;
 
 namespace PhotoScope.Core.DTOModels
 {
-    public class Feed : ObservableModel
+    public class Feed : BaseModel
     {
-        public ObservableCollection<FeedItem> FeedItems { get; set; }
+        private ObservableCollection<FeedItem> _feedItems;
+        private int _currentPage;
 
-        public int CurrentPage { get; set; }
+        public ObservableCollection<FeedItem> FeedItems
+        {
+            get => _feedItems;
+            set => SetField(ref _feedItems,value);
+        }
 
+        public int CurrentPage
+        {
+            get => _currentPage;
+            set => SetField(ref _currentPage,value);
+        }
     }
 }

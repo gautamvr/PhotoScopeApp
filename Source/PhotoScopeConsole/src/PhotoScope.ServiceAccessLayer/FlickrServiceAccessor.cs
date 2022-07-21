@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
+using PhotoScope.Core.DtoModels;
 using PhotoScope.ServiceAccessLayer.Data;
 using PhotoScope.ServiceAccessLayer.Interfaces;
 using PhotoScope.Utilities.Common;
@@ -9,27 +11,33 @@ namespace PhotoScope.ServiceAccessLayer
 {
     public class FlickrServiceAccessor : IServiceAccessor
     {
-        public FlickrServiceAccessor()
+        private IQueryManager _queryManager;
+        private string _apiKey;
+        
+        public FlickrServiceAccessor(IUnityContainer container)
         {
+            _queryManager = container.Resolve<IQueryManager>();
+            var baseAddress = _queryManager.GetBaseAddress();
+
             ApiHelper.Initialize();
-            ApiHelper.ApiClient.BaseAddress = new Uri("https://api.flickr.com/services/");
+            ApiHelper.ApiClient.BaseAddress = new Uri(baseAddress);
         }
 
-        public PhotoList GetImages(string keyword)
+        public void SetApiKey(string apiKey)
         {
-            return new PhotoList();
+            _apiKey = apiKey;
         }
 
-        public async Task<PhotoList> GetImagesAsync(string keyword)
+        public Task<PhotoList> GetCommentsAsync(string imageId)
         {
-            PhotoList feed = await GetImagesFromApi(keyword);
-            return feed;
+            throw new NotImplementedException();
         }
 
-        public async Task<PhotoList> GetImagesFromApi(string keyword)
+        public async Task<PhotoList> GetImagesAsync(SearchConfig keyword)
         {
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(
-                       $"rest/?method=flickr.photos.search&api_key=c3b8bebd6bca6ec55ffc09e58dca6e10&tags={keyword}&format=json&nojsoncallback=1&per_page=30&safe_search=1&extras=url_t,url_s,url_l,url_m"))
+            var query = _queryManager.GetImageQuery(_apiKey, keyword);
+
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(query))
             {
                 if (response.IsSuccessStatusCode)
                 {

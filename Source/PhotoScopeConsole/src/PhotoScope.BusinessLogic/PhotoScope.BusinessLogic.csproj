@@ -41,11 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PhotoFeedDtoPopulator.cs" />
-    <Compile Include="PhotoFeedHandler.cs" />
-    <Compile Include="PhotoListModelProvider.cs" />
+    <Compile Include="FeedDtoPopulator.cs" />
+    <Compile Include="FeedController.cs" />
+    <Compile Include="FeedModelProvider.cs" />
+    <Compile Include="Interfaces\IFeedDtoPopulator.cs" />
+    <Compile Include="Interfaces\ISearchConfigStore.cs" />
+    <Compile Include="PhotoItemAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchConfigModelProvider.cs" />
+    <Compile Include="SearchConfigRequestHandler.cs" />
+    <Compile Include="SearchConfigStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhotoScope.Core\PhotoScope.Core.csproj">
@@ -61,6 +66,9 @@
     <PackageReference Include="Unity">
       <Version>4.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

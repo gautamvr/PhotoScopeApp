@@ -3,25 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.ServiceAccessLayer.Data
 {
-    public class PhotoItem
+    public class PhotoItem : FeedItem
     {
-        public string Url_s { get; set; }
-        public string Url_m { get; set; }
-        public string Url_l { get; set; }
-        public string Url_t { get; set; }
+        #region Private Properties
 
-        public string ID { get; set; }
+        private string _url;
+        private string _urlSmall;
+        private string _urlLarge;
+        private string _urlMedium;
 
-        public string Owner { get; set; }
+        #endregion
 
-        public string Secret { get; set; }
+        #region Public properties
 
-        public string Server { get; set; }
-        public string Farm { get; set; }
+        public new string Url
+        {
+            get => _url;
+            set => SetField(ref _url, value);
+        }
 
-        public string Title { get; set; }
+        public string UrlSmall
+        {
+            get => _urlSmall;
+            set => SetField(ref _urlSmall, value);
+        }
+        public string UrlMedium
+        {
+            get => _urlMedium;
+            set => SetField(ref _urlMedium, value);
+        }
+
+        public string UrlLarge
+        {
+            get => _urlLarge;
+            set => SetField(ref _urlLarge, value);
+        }
+
+        #endregion
     }
 }

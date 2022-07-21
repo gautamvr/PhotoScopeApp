@@ -13,7 +13,7 @@ namespace PhotoScope.DesktopUI.ViewModels
     public class SearchBarViewModel : ViewModelBase
     {
         private string _searchWord;
-        private IPhotoFeedHandler _photoFeedHandler;
+        private IFeedController _photoFeedHandler;
         private readonly PhotoFeedViewModel _feedViewModel;
 
         private bool _isValuePresent;
@@ -40,7 +40,7 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public SearchBarViewModel(IUnityContainer container)
         {
-            _photoFeedHandler = container.Resolve<IPhotoFeedHandler>();
+            _photoFeedHandler = container.Resolve<IFeedController>();
             _feedViewModel = container.Resolve<PhotoFeedViewModel>();
             SearchCommand = new Command(OnSearchCommand);
             ResetCommand = new Command(OnResetCommand);
@@ -58,7 +58,7 @@ namespace PhotoScope.DesktopUI.ViewModels
             try
             {
                 _feedViewModel.IsLoading = true;
-                await _photoFeedHandler.UpdateFeedAsync(SearchWord);
+                await _photoFeedHandler.UpdateFeed();
             }
             catch (Exception e)
             {
