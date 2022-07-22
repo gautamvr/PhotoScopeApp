@@ -7,6 +7,9 @@ namespace PhotoScope.Core.Interfaces
         Task UpdateFeed();
         void ClearFeed();
         Task RefreshFeed();
+
+        void SelectImage(string imageId);
+        
         Task LoadMore();
         
     }

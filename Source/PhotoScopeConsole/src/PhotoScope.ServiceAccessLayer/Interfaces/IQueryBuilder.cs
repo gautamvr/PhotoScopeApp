@@ -9,6 +9,8 @@ namespace PhotoScope.ServiceAccessLayer.Interfaces
 
         void AddGetCommentsMethodQuery();
 
+        void AddGetImageInfoMethodQuery();
+
         void AddNoJsonCallBack();
 
         void SetExtras(string extras);

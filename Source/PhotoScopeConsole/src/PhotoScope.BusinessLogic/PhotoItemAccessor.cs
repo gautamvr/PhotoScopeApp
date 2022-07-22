@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using PhotoScope.BusinessLogic.Interfaces;
 using PhotoScope.Core.DTOModels;
-using PhotoScope.Core.Interfaces;
 using PhotoScope.ServiceAccessLayer.Data;
 using PhotoScope.ServiceAccessLayer.Interfaces;
 
@@ -50,7 +46,7 @@ namespace PhotoScope.BusinessLogic
 
         private PhotoItem CreatePhotoItem(PhotoModel photo)
         {
-            return new PhotoItem()
+            return new PhotoItem
             {
                 ItemId = photo.ID,
                 Title = photo.Title,

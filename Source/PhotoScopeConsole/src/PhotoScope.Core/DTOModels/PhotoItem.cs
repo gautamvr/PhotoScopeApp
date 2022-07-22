@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PhotoScope.Core.DTOModels;
 
-namespace PhotoScope.ServiceAccessLayer.Data
+namespace PhotoScope.Core.DTOModels
 {
     public class PhotoItem : FeedItem
     {

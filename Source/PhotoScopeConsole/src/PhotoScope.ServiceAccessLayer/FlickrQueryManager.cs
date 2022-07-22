@@ -30,11 +30,7 @@ namespace PhotoScope.ServiceAccessLayer
         {
             return _baseAddress;
         }
-
-        public void UpdateQueryBuilder(IQueryBuilder queryBuilder)
-        {
-            QueryBuilder = queryBuilder;
-        }
+        
 
         public string GetImageQuery(string apiKey, SearchParameters searchConfig)
         {
@@ -53,15 +49,29 @@ namespace PhotoScope.ServiceAccessLayer
 
         }
 
-        public string GetCommentsQuery(string apiKey, SearchParameters searchConfig)
+        public string GetCommentsQuery(string apiKey, string imageId)
         {
             _queryBuilder.SetApiKey(apiKey);
             _queryBuilder.AddGetCommentsMethodQuery();
-            _queryBuilder.SetPhotoId("");
+            _queryBuilder.SetPhotoId(imageId);
             _queryBuilder.SetFormat("json");
             _queryBuilder.AddNoJsonCallBack();
 
             return _queryBuilder.Build();
         }
+
+        public string GetImageInfoQuery(string apiKey, string imageId)
+        {
+            _queryBuilder.SetApiKey(apiKey);
+            _queryBuilder.AddGetImageInfoMethodQuery();
+            _queryBuilder.SetPhotoId(imageId);
+            _queryBuilder.SetFormat("json");
+            _queryBuilder.AddNoJsonCallBack();
+
+            return _queryBuilder.Build();
+
+        }
+
+
     }
 }

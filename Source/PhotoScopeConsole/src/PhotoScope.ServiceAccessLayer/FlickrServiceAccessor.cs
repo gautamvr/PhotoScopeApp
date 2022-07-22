@@ -28,9 +28,44 @@ namespace PhotoScope.ServiceAccessLayer
             _apiKey = apiKey;
         }
 
-        public Task<PhotoList> GetCommentsAsync(string imageId)
+        public string GetBuddyIconUrl(string farmId, string serverId, string nsid)
         {
-            throw new NotImplementedException();
+            string iconUrl;
+            ;
+            if (int.TryParse(serverId,out int serverNum) && serverNum > 0)
+            {
+                iconUrl = $"http://farm{farmId}.staticflickr.com/{serverId}/buddyicons/{nsid}.jpg";
+            }
+            else
+            {
+                iconUrl = "https://www.flickr.com/images/buddyicon.gif";
+            }
+
+            return iconUrl;
+        }
+
+        public string GetImageUrl(string serverId, string imageId, string secret)
+        {
+            return $"https://live.staticflickr.com/{serverId}/{imageId}_{secret}.jpg";
+        }
+
+        public async Task<Comments> GetCommentsAsync(string imageId)
+        {
+            var query = _queryManager.GetCommentsQuery(_apiKey, imageId);
+
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(query))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<CommentsResultModel>();
+                    return result.Comments;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+
+                }
+            }
         }
 
         public async Task<PhotoList> GetImagesAsync(SearchParameters keyword)
@@ -41,8 +76,27 @@ namespace PhotoScope.ServiceAccessLayer
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<ResultModel>();
+                    var result = await response.Content.ReadAsAsync<FeedResultModel>();
                     return result.Photos;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+
+                }
+            }
+        }
+
+        public async Task<PhotoInfo> GetPhotoInfoAsync(string imageId)
+        {
+            var query = _queryManager.GetImageInfoQuery(_apiKey, imageId);
+
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(query))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<PhotoInfoResultModel>();
+                    return result.Photo;
                 }
                 else
                 {

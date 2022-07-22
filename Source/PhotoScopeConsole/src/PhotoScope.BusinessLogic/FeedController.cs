@@ -39,6 +39,11 @@ namespace PhotoScope.BusinessLogic
             await UpdateFeed();
         }
 
+        public void SelectImage(string imageId)
+        {
+            
+        }
+
         public async Task LoadMore()
         {
             var searchConfig = _searchConfigStore.GetSearchConfig();

@@ -21,6 +21,11 @@ namespace PhotoScope.ServiceAccessLayer
             _parametersList.Add("method=flickr.photos.comments.getList");
         }
 
+        public void AddGetImageInfoMethodQuery()
+        {
+            _parametersList.Add("method=flickr.photos.getInfo");
+        }
+
         public void AddNoJsonCallBack()
         {
             _parametersList.Add("nojsoncallback=1");

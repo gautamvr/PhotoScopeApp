@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.BusinessLogic.Tests", "tst\PhotoScope.BusinessLogic.Tests\PhotoScope.BusinessLogic.Tests.csproj", "{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.PreviewDisplay", "PhotoScope.PreviewDisplay\PhotoScope.PreviewDisplay.csproj", "{C52FAD36-6267-4C6F-BA89-B59518D1824F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C52FAD36-6267-4C6F-BA89-B59518D1824F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C52FAD36-6267-4C6F-BA89-B59518D1824F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C52FAD36-6267-4C6F-BA89-B59518D1824F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C52FAD36-6267-4C6F-BA89-B59518D1824F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{F8196743-2E0B-4A41-939B-043BBD3BE404} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
 		{FFF5E192-F8E7-4B4D-ABCD-F06852EF7A9D} = {639ACFDD-E8D5-406A-BC07-A7721B598D69}
 		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F} = {FFF5E192-F8E7-4B4D-ABCD-F06852EF7A9D}
+		{C52FAD36-6267-4C6F-BA89-B59518D1824F} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C57CA79-FBA3-4511-A2BC-63738EAE82BD}
