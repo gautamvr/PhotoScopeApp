@@ -19,7 +19,7 @@ namespace PhotoScope.DesktopUI
         protected override void OnStartup(StartupEventArgs e)
         {
             _bootstrapper = new ConsoleBootstrapper();
-            _bootstrapper.Run();
+            _bootstrapper.Initialize();
         }
     }
 }

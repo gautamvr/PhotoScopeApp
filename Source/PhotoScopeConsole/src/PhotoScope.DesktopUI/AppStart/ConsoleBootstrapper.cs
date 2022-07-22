@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
+﻿using System.Configuration;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
@@ -13,8 +8,16 @@ using Prism.Unity;
 
 namespace PhotoScope.DesktopUI.AppStart
 {
-    internal class ConsoleBootstrapper : UnityBootstrapper
+    internal class ConsoleBootstrapper
     {
+        private IUnityContainer _container;
+        
+        public void Initialize()
+        {
+            _container = CreateContainer();
+            InitializeShell();
+        }
+
         private void LoadConfiguration(IUnityContainer container)
         {
             var configuration =
@@ -23,23 +26,18 @@ namespace PhotoScope.DesktopUI.AppStart
             container.LoadConfiguration(unityConfigurationSection);
         }
 
-        protected override IUnityContainer CreateContainer()
+        protected IUnityContainer CreateContainer()
         {
             var container = new UnityContainer();
             LoadConfiguration(container);
+            container.RegisterType<PhotoFeedViewModel>(new ContainerControlledLifetimeManager());
             return container;
         }
-
-        protected override DependencyObject CreateShell()
+        
+        protected void InitializeShell()
         {
-            return Container.TryResolve<Window>();
-        }
-
-        protected override void InitializeShell()
-        {
-            base.InitializeShell();
-            Application.Current.MainWindow = Shell as Window;
-            Application.Current.MainWindow.DataContext = Container.Resolve<PhotoScopeConsoleViewModel>();
+            Application.Current.MainWindow = _container.Resolve<Window>();
+            Application.Current.MainWindow.DataContext = _container.Resolve<PhotoScopeConsoleViewModel>();
             Application.Current.MainWindow?.Show();
         }
     }

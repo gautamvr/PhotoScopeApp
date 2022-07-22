@@ -41,7 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\PhotoItem.cs" />
+    <Compile Include="Data\PhotoModel.cs" />
+    <Compile Include="Data\PhotoList.cs" />
+    <Compile Include="Data\ResultModel.cs" />
+    <Compile Include="FlickrQueryManager.cs" />
+    <Compile Include="FlickrRestQueryBuilder.cs" />
     <Compile Include="FlickrServiceAccessor.cs" />
+    <Compile Include="Interfaces\IQueryBuilder.cs" />
+    <Compile Include="Interfaces\IQueryManager.cs" />
+    <Compile Include="Interfaces\IServiceAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,10 +58,14 @@
       <Project>{486F6C02-6EFF-42A5-950C-A489FB797069}</Project>
       <Name>PhotoScope.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhotoScope.Utilities.Common\PhotoScope.Utilities.Common.csproj">
+      <Project>{F8196743-2E0B-4A41-939B-043BBD3BE404}</Project>
+      <Name>PhotoScope.Utilities.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
-      <Version>5.2.9</Version>
+    <PackageReference Include="Unity">
+      <Version>4.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

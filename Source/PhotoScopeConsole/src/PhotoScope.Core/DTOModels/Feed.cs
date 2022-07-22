@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace PhotoScope.Core.DTOModels
 {
-    public class Feed : ObservableModel
+    public class Feed : BaseModel
     {
-        public FeedItemList Photos { get; set; }
+        private ObservableCollection<FeedItem> _feedItems;
+
+        public ObservableCollection<FeedItem> FeedItems
+        {
+            get => _feedItems;
+            set => SetField(ref _feedItems,value);
+        }
     }
 }

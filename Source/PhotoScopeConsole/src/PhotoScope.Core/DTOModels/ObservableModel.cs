@@ -11,6 +11,8 @@ namespace PhotoScope.Core.DTOModels
 {
     public class ObservableModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         protected bool SetField<T>(ref T propertyField, T value,
             [CallerMemberName] string propertyName = null)
         {
@@ -22,8 +24,6 @@ namespace PhotoScope.Core.DTOModels
             NotifyPropertyChanged(propertyName);
             return true;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = null)

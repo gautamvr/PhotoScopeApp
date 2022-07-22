@@ -1,32 +1,44 @@
-﻿using System.CodeDom;
-using System.Security.AccessControl;
+﻿using PhotoScope.Core.DTOModels;
 
 namespace PhotoScope.Core.DTOModels
 {
-    public class FeedItem
+    public class FeedItem : BaseModel
     {
-        private string _imageUri;
+        #region Private Properties
 
-        public string ImageUri
+        private string _url;
+        private string _itemId;
+        private string _title;
+        private string _owner;
+        #endregion
+
+
+        #region Public Properties
+
+        public string Url
         {
-            get
-            {
-                _imageUri = $"https://live.staticflickr.com/{Server}/{ID}_{Secret}_m.jpg";
-                return _imageUri;
-            }
-            set { _imageUri = value; }
+            get => _url;
+            set => SetField(ref _url,value);
         }
 
-        public string ID { get; set; }
+        public string ItemId
+        {
+            get => _itemId;
+            set => SetField(ref _itemId,value);
+        }
 
-        public string Owner { get; set; }
+        public string Title
+        {
+            get => _title;
+            set => SetField(ref _title,value);
+        }
 
-        public string Secret { get; set; }
+        public string Owner
+        {
+            get => _owner;
+            set => SetField(ref _owner,value);
+        }
 
-        public string Server { get; set; }
-        public string Farm { get; set; }
-
-        public string Title { get; set; }
-
+        #endregion
     }
 }

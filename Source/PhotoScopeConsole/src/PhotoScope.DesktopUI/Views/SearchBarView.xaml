@@ -4,16 +4,81 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoScope.DesktopUI.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters"
+             mc:Ignorable="d" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Text="Enter Search Tag here : " 
+                   Margin="20,0"
+                   Height="32"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Foreground="Black"
+                   FontSize="16" FontFamily="Calibri" FontWeight="Normal"
+                   Padding="0,6,0,0"/>
+        <Border Grid.Column="1" Margin="10 0" 
+                BorderBrush="{Binding ElementName=SearchTextBox, Path=BorderBrush}"
+                BorderThickness="2" Height="32" 
+                CornerRadius="5" 
+                SnapsToDevicePixels="True">
 
-        <TextBox Grid.Column="0" Margin="10" MinWidth="200" Text="{Binding Path=SearchWord}" HorizontalAlignment="Stretch"/>
-        <Button Grid.Column="1" MinWidth="100" Command="{Binding SearchCommand}" Content="Search" Margin="10"/>
-            
+            <StackPanel Orientation="Horizontal" Width="Auto">
+                
+                <TextBox Name="SearchTextBox"
+                         Width="140" Height="32"
+                         Text="{Binding Path=SearchParameters.SearchTag, UpdateSourceTrigger=PropertyChanged}"
+                         Padding="10,7,0,0">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding SearchCommand}" Key="Enter"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+
+                <Button Command="{Binding ResetCommand}" Style="{StaticResource IconButtonStyle}"
+                        Visibility="{Binding Path=IsValuePresent, 
+                                    Converter={x:Static converter:BoolToVisibilityConverter.Instance}}">
+                    <Image Source="{StaticResource CrossIcon}"/>
+                </Button>
+
+                <Button Command="{Binding SearchCommand}" Style="{StaticResource DefaultButtonStyle}"
+                        Content="Search"/>
+
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <TextBlock Text="Items per page : " 
+                       Margin="20,0"
+                       Height="32"
+                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Foreground="Black"
+                       FontSize="16" FontFamily="Calibri" FontWeight="Normal"
+                       Padding="0,6,0,0"/>
+            <TextBox Width="50" Height="32" 
+                     Padding="10,7,0,0"
+                     Text="{Binding SearchParameters.ItemsPerPage, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource {x:Type TextBox}}"/>
+
+        </StackPanel>
+        <StackPanel Grid.Column="3" Orientation="Horizontal">
+            <TextBlock Text="Text to search : " 
+                       Margin="20,0"
+                       Height="32"
+                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Foreground="Black"
+                       FontSize="16" FontFamily="Calibri" FontWeight="Normal"
+                       Padding="0,6,0,0"/>
+            <TextBox Width="50" Height="32" 
+                     Padding="10,7,0,0"
+                     Text="{Binding SearchParameters.SearchText, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource {x:Type TextBox}}"/>
+
+        </StackPanel>
+        
+
+
+        
     </Grid>
 </UserControl>
