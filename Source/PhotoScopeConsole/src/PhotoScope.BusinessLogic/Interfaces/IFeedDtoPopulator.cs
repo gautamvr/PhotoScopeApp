@@ -9,7 +9,7 @@ namespace PhotoScope.BusinessLogic.Interfaces
 
         Feed GetDtoModel();
 
-        void AddToFeed(List<FeedItem> item);
+        void AddToFeed(IList<FeedItem> item);
 
         void ClearFeed();
     }

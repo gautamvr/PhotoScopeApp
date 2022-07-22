@@ -17,13 +17,16 @@ namespace PhotoScope.BusinessLogic
             };
         }
 
-        public void AddToFeed(List<FeedItem> items)
+        public void AddToFeed(IList<FeedItem> items)
         {
             if (items != null)
             {
                 foreach (var feedItem in items)
                 {
-                    FeedDto.FeedItems.Add(feedItem);
+                    if (feedItem != null)
+                    {
+                        FeedDto.FeedItems.Add(feedItem);
+                    }
                 }
             }
         }

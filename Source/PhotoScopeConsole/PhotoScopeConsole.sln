@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.BusinessLogic", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.Utilities.Common", "src\PhotoScope.Utilities.Common\PhotoScope.Utilities.Common.csproj", "{F8196743-2E0B-4A41-939B-043BBD3BE404}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{FFF5E192-F8E7-4B4D-ABCD-F06852EF7A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoScope.BusinessLogic.Tests", "tst\PhotoScope.BusinessLogic.Tests\PhotoScope.BusinessLogic.Tests.csproj", "{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{F8196743-2E0B-4A41-939B-043BBD3BE404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8196743-2E0B-4A41-939B-043BBD3BE404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8196743-2E0B-4A41-939B-043BBD3BE404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,8 @@ Global
 		{486F6C02-6EFF-42A5-950C-A489FB797069} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
 		{5DBFDD54-3CEB-479E-B86A-33B397B36482} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
 		{F8196743-2E0B-4A41-939B-043BBD3BE404} = {82C44398-2642-45B9-BACC-EBDD9FB756A9}
+		{FFF5E192-F8E7-4B4D-ABCD-F06852EF7A9D} = {639ACFDD-E8D5-406A-BC07-A7721B598D69}
+		{01EB364D-0CB5-4D6E-ADAC-411D5751FA8F} = {FFF5E192-F8E7-4B4D-ABCD-F06852EF7A9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C57CA79-FBA3-4511-A2BC-63738EAE82BD}

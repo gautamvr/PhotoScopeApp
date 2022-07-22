@@ -41,7 +41,6 @@ namespace PhotoScope.BusinessLogic
 
         public async Task LoadMore()
         {
-            var currentPage = _feedPopulator.FeedDto.CurrentPage;
             var searchConfig = _searchConfigStore.GetSearchConfig();
             searchConfig.CurrentPage += 1;
             var feedItems = await _feedItemAccessor.GetFeedItems(searchConfig);
