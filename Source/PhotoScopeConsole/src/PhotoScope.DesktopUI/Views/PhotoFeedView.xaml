@@ -7,40 +7,46 @@
              xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters"
              xmlns:ext="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d">
-    <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <Grid Name="PhotoFeedGrid">
+        <Border MinHeight="500"/>
+        <ScrollViewer Grid.Column="0" 
+                      VerticalScrollBarVisibility="Auto"
+                      Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}">
+
+            <StackPanel>
                 <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" Width="Auto"/>
+                            <WrapPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.Template>
                         <ControlTemplate TargetType="ItemsControl">
-                            <StackPanel>
+                            <StackPanel HorizontalAlignment="Stretch">
                                 <ItemsPresenter />
                                 <ext:ImageAwesome Grid.Row="0" 
                                               Icon="CircleOutlineNotch" 
                                               Width="80" Height="80" Margin="0,40,0,0" 
                                               Spin="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                              Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
+                                              Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"/>
                                 <TextBlock Grid.Row="1" 
                                        Text="Loading..." 
                                        HorizontalAlignment="Center" VerticalAlignment="Center" 
                                        FontSize="20" Margin="0,20"
-                                       Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
-
-                                <Button Content="Show more" 
-                                    Style="{StaticResource DefaultButtonStyle}" 
-                                    Command="{Binding Path=ShowMore}"
-                                    Visibility="{Binding IsContentLoaded, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
+                                       Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"/>
                             </StackPanel>
                         </ControlTemplate>
                     </ItemsControl.Template>
-                </ItemsControl>
+            </ItemsControl>
+            <Button Content="Show more" 
+                    Style="{StaticResource DefaultButtonStyle}" 
+                    Command="{Binding Path=ShowMore}"
+                    Visibility="{Binding IsContentLoaded, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
+            </StackPanel>
 
-            </ScrollViewer>
-            <!--<local:PreviewRegionView></local:PreviewRegionView>-->
+        </ScrollViewer>
+        <local:PreviewRegionView Grid.Column="1" Visibility="Collapsed"/>
+            
         
 
 

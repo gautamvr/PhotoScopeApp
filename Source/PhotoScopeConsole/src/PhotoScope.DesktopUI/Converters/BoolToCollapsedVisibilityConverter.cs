@@ -15,7 +15,7 @@ namespace PhotoScope.DesktopUI.Converters
         /// <summary>
         ///     Gets the converter instance
         /// </summary>
-        public static IValueConverter Instance { get; } = new BoolToVisibilityConverter();
+        public static IValueConverter Instance { get; } = new BoolToCollapsedVisibilityConverter();
 
         /// <summary>
         ///     Returns Visibility as Visible when value is true

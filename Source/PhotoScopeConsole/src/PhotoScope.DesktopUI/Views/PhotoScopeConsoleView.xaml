@@ -4,18 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoScope.DesktopUI.Views"
-             mc:Ignorable="d" Height="500" Width="1000" >
+             mc:Ignorable="d">
     <Grid Margin="25">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <local:SearchBarView DataContext="{Binding Path=SearchBarViewModel}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" />
-        <local:PhotoFeedView DataContext="{Binding Path=FeedViewModel}" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1"/>
-            
-    </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <local:SearchBarView Grid.Row="0" 
+                                 DataContext="{Binding Path=SearchBarViewModel}"
+                                 VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+
+            <local:PhotoFeedView Grid.Row="1"
+                                 DataContext="{Binding Path=FeedViewModel}" />
+
+        </Grid>
 </UserControl>
