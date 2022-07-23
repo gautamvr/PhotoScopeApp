@@ -22,40 +22,40 @@ namespace PhotoScope.PreviewDisplay
         }
 
 
-        public async Task<bool> LoadPreview(string imageId)
+        public async Task LoadPreview(string imageId)
         {
             try
             {
+                PreviewLoading?.Invoke(this,EventArgs.Empty);
                 _selectedImageId = imageId;
                 var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
                 if (previewModel != null)
                 {
                     _previewPopulator.UpdatePreviewItem(previewModel);
-                    return true;
                 }
-
-                return false;
             }
             catch (Exception e)
             {
-                return false;
+                ClosePreview();
             }
         }
 
         public void ClosePreview()
         {
             PreviewClosed?.Invoke(this,EventArgs.Empty);
+            _previewPopulator.ClearPreviewItem();
         }
 
         public async Task LoadComments()
         {
             var currentPreviewModel = _previewPopulator.GetPreviewModel();
-            if (currentPreviewModel.NumOfComments == 0)
+            if (currentPreviewModel.PreviewItem.NumOfComments == 0)
             {
                 return;
             }
 
             var comments = await _previewItemAccessor.GetCommentSection(_selectedImageId);
+            _previewPopulator.UpdateComments(comments);
         }
         
         public void PostComment(string comment)
@@ -65,6 +65,6 @@ namespace PhotoScope.PreviewDisplay
 
         public event EventHandler PreviewClosed;
 
-        public event EventHandler PreviewLoaded;
+        public event EventHandler PreviewLoading;
     }
 }

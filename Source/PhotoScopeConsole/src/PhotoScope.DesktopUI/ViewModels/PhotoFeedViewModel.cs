@@ -19,13 +19,17 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public ICommand ShowMore { get; set; }
 
+        public ICommand SelectItem { get; set; }
+
         public PhotoFeedViewModel(IUnityContainer container)
         {
             IsLoading = false;
             IsContentLoaded = false;
             _modelProvider = container.Resolve<IModelProvider<Feed>>();
             _feedController = container.Resolve<IFeedController>();
+
             ShowMore = new Command(OnShowMore);
+            SelectItem = new Command(OnItemSelected);
 
             Feed = _modelProvider.GetInitialModel();
             GridItems = Feed?.FeedItems;
@@ -33,6 +37,15 @@ namespace PhotoScope.DesktopUI.ViewModels
             if (GridItems != null)
             {
                 GridItems.CollectionChanged += OnGridItemsChanged;
+            }
+        }
+
+        private void OnItemSelected(object obj)
+        {
+            if (obj != null)
+            {
+                var imageId = obj as string;
+                _feedController.SelectImage(imageId);
             }
         }
 

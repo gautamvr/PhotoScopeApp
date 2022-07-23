@@ -22,19 +22,27 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.Template>
                         <ControlTemplate TargetType="ItemsControl">
-                            <StackPanel HorizontalAlignment="Stretch">
-                                <ItemsPresenter />
-                                <ext:ImageAwesome Grid.Row="0" 
-                                              Icon="CircleOutlineNotch" 
-                                              Width="80" Height="80" Margin="0,40,0,0" 
-                                              Spin="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                              Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"/>
-                                <TextBlock Grid.Row="1" 
-                                       Text="Loading..." 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                       FontSize="20" Margin="0,20"
-                                       Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"/>
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+
+                                </Grid.ColumnDefinitions>
+                                <StackPanel HorizontalAlignment="Stretch">
+                                    <ItemsPresenter />
+                                    <ext:ImageAwesome Grid.Row="0" 
+                                                      Icon="CircleOutlineNotch" 
+                                                      Width="80" Height="80" Margin="0,40,0,0" 
+                                                      Spin="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                      Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"/>
+                                    <TextBlock Grid.Row="1" 
+                                               Text="Loading..." 
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               FontSize="20" Margin="0,20"
+                                               Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"/>
+                                </StackPanel>
+                            </Grid>
+                            
                         </ControlTemplate>
                     </ItemsControl.Template>
             </ItemsControl>
@@ -45,7 +53,7 @@
             </StackPanel>
 
         </ScrollViewer>
-        <local:PreviewRegionView Grid.Column="1" Visibility="Collapsed"/>
+        
             
         
 

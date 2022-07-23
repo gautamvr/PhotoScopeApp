@@ -4,9 +4,99 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoScope.DesktopUI.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters"
+             mc:Ignorable="d" Visibility="{Binding Path=IsItemSelected, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"
+             Width =" 300">
+
+    <Grid Name="PhotoFeedGrid">
+        <ScrollViewer Grid.Column="0" 
+                      VerticalScrollBarVisibility="Auto">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <!--Preview Item-->
+                <Grid Grid.Row="0" MaxHeight="200" MaxWidth="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Close Preview button-->
+                    <Button Grid.Row="0" Content="Close Preview" HorizontalAlignment="Left"></Button>
+
+                    <!--User Name-->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+                        <Image Source="{Binding Path=PreviewItemOwner.DisplayPhotoUrl}" Height="24" Width="24"/>
+                        <TextBlock Text="{Binding Path=PreviewItemOwner.FullName}" TextTrimming="CharacterEllipsis" Height="40"/>
+                    </StackPanel>
+
+                    <!--Preview Image-->
+                    <Border Grid.Row="2"  Height="100" Width="100">
+                        <Image Source="{Binding Path=ImageUrl}" Stretch="Uniform"/>
+                    </Border>
+                </Grid>
+
+                <!--Image Title-->
+                <TextBlock Grid.Row="1" Text="{Binding Path=Title}" Height="24"/>
+
+                <!--Image Details-->
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Description-->
+                    <TextBlock Grid.Row="0" Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow"/>
+
+                    <!--Views-->
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock Text="Views :"/>
+                        <TextBlock Text="{Binding Path= Views}"/>
+                    </StackPanel>
+                </Grid>
+
+                <!--Num of Comments-->
+                <StackPanel  Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToTextConverter.Instance}}"></TextBlock>
+                    <Button Content="Load Comments" 
+                            Style="{StaticResource DefaultButtonStyle}" 
+                            Command="{Binding Path=ShowMore}"
+                            Visibility="{Binding IsContentLoaded, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
+
+                </StackPanel>
+
+
+
+                
+
+                <ItemsControl Grid.Row="4" ItemsSource="{Binding Path=CommentsList}" ItemTemplate="{StaticResource ResourceKey=CommentItemTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                
+            </Grid>
+
+        </ScrollViewer>
+
+
+
+
+
+
+
     </Grid>
 </UserControl>

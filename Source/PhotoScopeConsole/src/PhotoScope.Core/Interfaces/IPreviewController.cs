@@ -5,7 +5,7 @@ namespace PhotoScope.Core.Interfaces
 {
     public interface IPreviewController
     {
-        Task<bool> LoadPreview(string imageId);
+        Task LoadPreview(string imageId);
 
         void ClosePreview();
 
@@ -14,5 +14,7 @@ namespace PhotoScope.Core.Interfaces
         void PostComment(string comment);
 
         event EventHandler PreviewClosed ;
+
+        event EventHandler PreviewLoading ;
     }
 }

@@ -7,7 +7,7 @@ namespace PhotoScope.PreviewDisplay.Interfaces
 {
     public interface IPreviewItemAccessor
     {
-        Task<PreviewModel> GetPreviewItem(string imageId);
+        Task<PreviewItem> GetPreviewItem(string imageId);
 
         Task<IEnumerable<CommentItem>> GetCommentSection(string imageId);
     }

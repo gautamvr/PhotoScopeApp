@@ -5,11 +5,13 @@ namespace PhotoScope.PreviewDisplay.Interfaces
 {
     public interface IPreviewPopulator
     {
-        void UpdatePreviewItem(PreviewModel item);
+        void ClearPreviewItem();
+
+        void UpdatePreviewItem(PreviewItem item);
 
         void UpdatePreviewImageUrl(string url);
 
-        void UpdateComments(IList<CommentItem> comments);
+        void UpdateComments(IEnumerable<CommentItem> comments);
 
         PreviewModel GetPreviewModel();
     }

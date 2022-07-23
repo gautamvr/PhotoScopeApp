@@ -11,18 +11,21 @@ namespace PhotoScope.PreviewDisplay
 
         public PreviewPopulator()
         {
-            PreviewDtoModel = new PreviewModel
+            PreviewDtoModel = new PreviewModel()
             {
-                CommentsList = new ObservableCollection<CommentItem>(),
-                PreviewItemOwner = new PreviewItemOwner()
+                PreviewItem = new PreviewItem()
+                {
+                    CommentsList = new ObservableCollection<CommentItem>(),
+                    PreviewItemOwner = new PreviewItemOwner()
+                }
             };
         }
 
-        public void UpdatePreviewItem(PreviewModel previewItem)
+        public void UpdatePreviewItem(PreviewItem previewItem)
         {
             if (previewItem != null)
             {
-                PreviewDtoModel = previewItem;
+                PreviewDtoModel.PreviewItem = previewItem;
             }
         }
 
@@ -30,11 +33,11 @@ namespace PhotoScope.PreviewDisplay
         {
             if (!string.IsNullOrEmpty(imageUrl))
             {
-                PreviewDtoModel.ImageUrl = imageUrl;
+                PreviewDtoModel.PreviewItem.ImageUrl = imageUrl;
             }
         }
 
-        public void UpdateComments(IList<CommentItem> comments)
+        public void UpdateComments(IEnumerable<CommentItem> comments)
         {
             if (comments != null)
             {
@@ -42,7 +45,7 @@ namespace PhotoScope.PreviewDisplay
                 {
                     if (comment != null)
                     {
-                        PreviewDtoModel.CommentsList.Add(comment);
+                        PreviewDtoModel.PreviewItem.CommentsList.Add(comment);
                     }
                 }
             }
@@ -52,6 +55,30 @@ namespace PhotoScope.PreviewDisplay
         public PreviewModel GetPreviewModel()
         {
             return PreviewDtoModel;
+        }
+
+        public void ClearPreviewItem()
+        {
+            if (PreviewDtoModel?.PreviewItem != null)
+            {
+                PreviewDtoModel.PreviewItem.CommentsList.Clear();
+                PreviewDtoModel.PreviewItem.Title = "";
+                PreviewDtoModel.PreviewItem.ImageUrl = "";
+                PreviewDtoModel.PreviewItem.NumOfComments = 0;
+                PreviewDtoModel.PreviewItem.ImageId = "";
+
+                if (PreviewDtoModel.PreviewItem.PreviewItemOwner!= null) 
+                {
+                    PreviewDtoModel.PreviewItem.PreviewItemOwner.DisplayPhotoUrl = "";
+                    PreviewDtoModel.PreviewItem.PreviewItemOwner.FullName = "";
+                    PreviewDtoModel.PreviewItem.PreviewItemOwner.Location = "";
+                    PreviewDtoModel.PreviewItem.PreviewItemOwner.UserName = "";
+                    PreviewDtoModel.PreviewItem.PreviewItemOwner = null;
+                }
+
+                PreviewDtoModel.PreviewItem = null;
+            }
+
         }
     }
 }

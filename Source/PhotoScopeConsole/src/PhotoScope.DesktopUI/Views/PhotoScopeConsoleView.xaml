@@ -10,13 +10,21 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+        
 
-            <local:SearchBarView Grid.Row="0" 
+            <local:SearchBarView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                                  DataContext="{Binding Path=SearchBarViewModel}"
-                                 VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+                                 VerticalAlignment="Top"/>
 
-            <local:PhotoFeedView Grid.Row="1"
+            <local:PhotoFeedView Grid.Row="1" Grid.Column="0"
                                  DataContext="{Binding Path=FeedViewModel}" />
+
+            <local:PreviewRegionView Grid.Row="1" Grid.Column="1"
+                                     DataContext="{Binding Path=PreviewViewModel}"/>
 
         </Grid>
 </UserControl>

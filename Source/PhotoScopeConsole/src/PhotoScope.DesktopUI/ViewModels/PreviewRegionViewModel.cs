@@ -14,12 +14,27 @@ namespace PhotoScope.DesktopUI.ViewModels
     public class PreviewRegionViewModel : ViewModelBase
     {
         private IModelProvider<PreviewModel> _previewModelProvider;
-        private PreviewModel _previewItem;
+        private IPreviewController _previewController;
+        private PreviewItem _previewItem;
+        private bool _isPreviewLoading;
+        private PreviewModel _previewDtoModel;
 
-        public PreviewModel PreviewItem
+        public PreviewItem PreviewItem
         {
             get => _previewItem;
             set => SetField(ref _previewItem,value);
+        }
+
+        public PreviewModel PreviewDtoModel
+        {
+            get => _previewDtoModel;
+            set => SetField(ref _previewDtoModel,value);
+        }
+
+        public bool IsPreviewLoading
+        {
+            get => _isPreviewLoading;
+            set => SetField(ref _isPreviewLoading,value);
         }
 
         public ICommand ClosePreview { get; set; }
@@ -28,9 +43,35 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public PreviewRegionViewModel(IUnityContainer container)
         {
-            _previewModelProvider = container.Resolve<IModelProvider<PreviewModel>>();
-            PreviewItem = _previewModelProvider.GetInitialModel();
+            _previewController = container.Resolve<IPreviewController>();
+            _previewController.PreviewLoading += OnPreviewLoading;
 
+
+            _previewModelProvider = container.Resolve<IModelProvider<PreviewModel>>();
+            PreviewDtoModel = _previewModelProvider.GetInitialModel();
+
+            if (PreviewDtoModel != null)
+            {
+                PreviewItem = PreviewDtoModel.PreviewItem;
+            }
+
+            ClosePreview = new Command(OnClosePreviewCommand);
+            LoadComments = new Command(OnLoadComments);
+        }
+
+        private void OnPreviewLoading(object sender, EventArgs e)
+        {
+            IsPreviewLoading = true;
+        }
+
+        private void OnLoadComments(object obj)
+        {
+            _previewController.LoadComments();
+        }
+
+        private void OnClosePreviewCommand(object obj)
+        {
+            _previewController.ClosePreview();
         }
     }
 }

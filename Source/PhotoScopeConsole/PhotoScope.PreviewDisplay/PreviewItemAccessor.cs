@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.PreviewDisplay.Interfaces;
 using PhotoScope.ServiceAccessLayer.Data;
@@ -15,14 +16,16 @@ namespace PhotoScope.PreviewDisplay
     public class PreviewItemAccessor : IPreviewItemAccessor
     {
         private IServiceAccessor _serviceAccessor;
+        private IPreviewPopulator _previewPopulator;
 
 
-        public PreviewItemAccessor(IServiceAccessor serviceAccessor)
+        public PreviewItemAccessor(IUnityContainer container)
         {
-            _serviceAccessor = serviceAccessor;
+            _serviceAccessor = container.Resolve<IServiceAccessor>();
+            _previewPopulator = container.Resolve<IPreviewPopulator>();
         }
 
-        public async Task<PreviewModel> GetPreviewItem(string imageId)
+        public async Task<PreviewItem> GetPreviewItem(string imageId)
         {
             var item = await Task.Run(() => _serviceAccessor.GetPhotoInfoAsync(imageId));
 
@@ -36,9 +39,9 @@ namespace PhotoScope.PreviewDisplay
             return GetComments(commentsResult);
         }
 
-        private PreviewModel CreatePreviewModel(PhotoInfo photoInfoModel)
+        private PreviewItem CreatePreviewModel(PhotoInfo photoInfoModel)
         {
-            PreviewModel previewModel = new PreviewModel();
+            PreviewItem previewModel = new PreviewItem();
             if (photoInfoModel != null)
             {
                 previewModel.PreviewItemOwner = CreatePreviewItemOwner(photoInfoModel.Owner);

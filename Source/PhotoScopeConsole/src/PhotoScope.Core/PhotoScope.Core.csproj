@@ -46,9 +46,10 @@
     <Compile Include="DTOModels\ObservableModel.cs" />
     <Compile Include="DTOModels\FeedItem.cs" />
     <Compile Include="DTOModels\Feed.cs" />
+    <Compile Include="DTOModels\PreviewModel.cs" />
     <Compile Include="DTOModels\PreviewItemOwner.cs" />
     <Compile Include="DTOModels\PhotoItem.cs" />
-    <Compile Include="DTOModels\PreviewModel.cs" />
+    <Compile Include="DTOModels\PreviewItem.cs" />
     <Compile Include="DTOModels\SearchParameters.cs" />
     <Compile Include="DTOModels\BaseObservableCollection.cs" />
     <Compile Include="DTOModels\SearchTagItem.cs" />
