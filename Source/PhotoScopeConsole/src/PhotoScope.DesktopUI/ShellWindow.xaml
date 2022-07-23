@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:PhotoScope.DesktopUI.Views"
-        mc:Ignorable="d" SizeToContent="WidthAndHeight"
-        Title="Photo Scope" WindowStartupLocation="CenterScreen" Width="901">
+        mc:Ignorable="d" WindowState="Maximized"
+        Title="Photo Scope" WindowStartupLocation="CenterScreen">
     <Grid>
         <views:PhotoScopeConsoleView/>
     </Grid>

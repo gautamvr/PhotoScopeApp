@@ -75,8 +75,7 @@ namespace PhotoScope.PreviewDisplay
                     PreviewDtoModel.PreviewItem.PreviewItemOwner.UserName = "";
                     PreviewDtoModel.PreviewItem.PreviewItemOwner = null;
                 }
-
-                PreviewDtoModel.PreviewItem = null;
+                
             }
 
         }

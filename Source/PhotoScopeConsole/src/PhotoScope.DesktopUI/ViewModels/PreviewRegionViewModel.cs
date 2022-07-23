@@ -31,7 +31,7 @@ namespace PhotoScope.DesktopUI.ViewModels
             set => SetField(ref _previewDtoModel,value);
         }
 
-        public bool IsPreviewLoading
+        public bool IsPreviewOpen
         {
             get => _isPreviewLoading;
             set => SetField(ref _isPreviewLoading,value);
@@ -61,7 +61,7 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         private void OnPreviewLoading(object sender, EventArgs e)
         {
-            IsPreviewLoading = true;
+            IsPreviewOpen = true;
         }
 
         private void OnLoadComments(object obj)
@@ -71,7 +71,9 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         private void OnClosePreviewCommand(object obj)
         {
+            IsPreviewOpen = false;
             _previewController.ClosePreview();
+            
         }
     }
 }

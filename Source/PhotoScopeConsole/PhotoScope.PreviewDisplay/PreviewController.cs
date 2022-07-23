@@ -31,7 +31,7 @@ namespace PhotoScope.PreviewDisplay
                 var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
                 if (previewModel != null)
                 {
-                    _previewPopulator.UpdatePreviewItem(previewModel);
+                    //_previewPopulator.UpdatePreviewItem(previewModel);
                 }
             }
             catch (Exception e)

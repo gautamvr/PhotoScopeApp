@@ -5,7 +5,10 @@
         <Border BorderThickness="2">
             <StackPanel Orientation="Vertical">
                 <Border Height="130" >
-                    <Button Cursor="Hand">
+                    <Button Cursor="Hand" 
+                            Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},
+                             Path=DataContext.SelectItem}" 
+                            CommandParameter="{Binding Path=ItemId}">
                         <Image Stretch="Uniform" Name="FeedItem">
                             <Image.Source>
                                 <BitmapImage UriSource="{Binding Path=Url}"/>

@@ -64,6 +64,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InverseBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NumCommentsToTextConverter.cs" />
+    <Compile Include="Converters\NumCommentsToVisibilityConverter.cs" />
     <Compile Include="ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
     </Compile>
@@ -158,6 +159,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PhotoScope.PreviewDisplay\PhotoScope.PreviewDisplay.csproj">
+      <Project>{c52fad36-6267-4c6f-ba89-b59518d1824f}</Project>
+      <Name>PhotoScope.PreviewDisplay</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoScope.BusinessLogic\PhotoScope.BusinessLogic.csproj">
       <Project>{5dbfdd54-3ceb-479e-b86a-33b397b36482}</Project>
       <Name>PhotoScope.BusinessLogic</Name>

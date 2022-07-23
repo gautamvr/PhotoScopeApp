@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoScope.DesktopUI.Views"
              mc:Ignorable="d">
-    <Grid Margin="25">
+    <Grid Margin="25" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -20,7 +20,8 @@
                                  DataContext="{Binding Path=SearchBarViewModel}"
                                  VerticalAlignment="Top"/>
 
-            <local:PhotoFeedView Grid.Row="1" Grid.Column="0"
+
+            <local:PhotoFeedView Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch"
                                  DataContext="{Binding Path=FeedViewModel}" />
 
             <local:PreviewRegionView Grid.Row="1" Grid.Column="1"

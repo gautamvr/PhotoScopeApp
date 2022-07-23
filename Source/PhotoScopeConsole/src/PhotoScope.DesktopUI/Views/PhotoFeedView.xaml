@@ -11,7 +11,8 @@
         <Border MinHeight="500"/>
         <ScrollViewer Grid.Column="0" 
                       VerticalScrollBarVisibility="Auto"
-                      Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}">
+                      Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}"
+                      Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}">
 
             <StackPanel>
                 <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}">

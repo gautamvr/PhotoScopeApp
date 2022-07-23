@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoScope.DesktopUI.Views"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters"
-             mc:Ignorable="d" Visibility="{Binding Path=IsItemSelected, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"
-             Width =" 300">
+             xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters" Name="PreviewRegion"
+             mc:Ignorable="d" Visibility="{Binding Path=IsPreviewOpen, Converter={x:Static converter:BoolToCollapsedVisibilityConverter.Instance}}"
+             Width =" 500">
 
-    <Grid Name="PhotoFeedGrid">
+    <Grid Name="PhotoFeedGrid" DataContext="{Binding Path=PreviewItem}">
         <ScrollViewer Grid.Column="0" 
                       VerticalScrollBarVisibility="Auto">
 
@@ -24,7 +24,7 @@
 
 
                 <!--Preview Item-->
-                <Grid Grid.Row="0" MaxHeight="200" MaxWidth="200">
+                <Grid Grid.Row="0" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -32,7 +32,10 @@
                     </Grid.RowDefinitions>
 
                     <!--Close Preview button-->
-                    <Button Grid.Row="0" Content="Close Preview" HorizontalAlignment="Left"></Button>
+                    <Button Grid.Row="0" 
+                            Content="Close Preview" 
+                            HorizontalAlignment="Left"  
+                            Command="{Binding ElementName=PreviewRegion, Path=DataContext.ClosePreview}"/>
 
                     <!--User Name-->
                     <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
@@ -60,7 +63,7 @@
                     <TextBlock Grid.Row="0" Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow"/>
 
                     <!--Views-->
-                    <StackPanel  Orientation="Horizontal">
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <TextBlock Text="Views :"/>
                         <TextBlock Text="{Binding Path= Views}"/>
                     </StackPanel>
@@ -69,16 +72,12 @@
                 <!--Num of Comments-->
                 <StackPanel  Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center">
                     <TextBlock Text="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToTextConverter.Instance}}"></TextBlock>
-                    <Button Content="Load Comments" 
+                    <Button Content="Load Comments"
                             Style="{StaticResource DefaultButtonStyle}" 
-                            Command="{Binding Path=ShowMore}"
-                            Visibility="{Binding IsContentLoaded, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
+                            Command="{Binding ElementName=PreviewRegion, Path=DataContext.LoadComments}"
+                            Visibility="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToVisibilityConverter.Instance}}"/>
 
                 </StackPanel>
-
-
-
-                
 
                 <ItemsControl Grid.Row="4" ItemsSource="{Binding Path=CommentsList}" ItemTemplate="{StaticResource ResourceKey=CommentItemTemplate}">
                     <ItemsControl.ItemsPanel>

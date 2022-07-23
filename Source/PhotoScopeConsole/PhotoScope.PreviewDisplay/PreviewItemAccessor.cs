@@ -29,7 +29,7 @@ namespace PhotoScope.PreviewDisplay
         {
             var item = await Task.Run(() => _serviceAccessor.GetPhotoInfoAsync(imageId));
 
-            return CreatePreviewModel(item);
+            return UpdatePreviewModel(item);
 
         }
         public async Task<IEnumerable<CommentItem>> GetCommentSection(string imageId)
@@ -39,14 +39,13 @@ namespace PhotoScope.PreviewDisplay
             return GetComments(commentsResult);
         }
 
-        private PreviewItem CreatePreviewModel(PhotoInfo photoInfoModel)
+        private PreviewItem UpdatePreviewModel(PhotoInfo photoInfoModel)
         {
-            PreviewItem previewModel = new PreviewItem();
+            PreviewItem previewModel = _previewPopulator.GetPreviewModel().PreviewItem;
             if (photoInfoModel != null)
             {
                 previewModel.PreviewItemOwner = CreatePreviewItemOwner(photoInfoModel.Owner);
                 previewModel.NumOfComments = Parse(photoInfoModel.Comments._content);
-                previewModel.CommentsList = new ObservableCollection<Core.DTOModels.CommentItem>();
                 previewModel.Title = photoInfoModel.Title._content;
                 previewModel.Description = photoInfoModel.Description._content;
                 previewModel.Views = photoInfoModel.Views;
