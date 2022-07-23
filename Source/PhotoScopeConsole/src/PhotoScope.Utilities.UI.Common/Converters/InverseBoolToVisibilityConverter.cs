@@ -2,10 +2,12 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using PhotoScope.Utilities.UI.Common;
 
-namespace PhotoScope.DesktopUI.Converters
+namespace PhotoScope.Utilities.UI.Common.Converters
 {
+    /// <summary>
+    /// Converter to convert invert boolean value to visibility
+    /// </summary>
     public class InverseBoolToVisibilityConverter : BaseConverter
     {
         /// <summary>

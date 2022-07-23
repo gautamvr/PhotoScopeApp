@@ -26,16 +26,15 @@ namespace PhotoScope.PreviewDisplay
         {
             try
             {
+                _previewPopulator.ClearPreviewItem();
                 PreviewLoading?.Invoke(this,EventArgs.Empty);
                 _selectedImageId = imageId;
                 var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
-                if (previewModel != null)
-                {
-                    //_previewPopulator.UpdatePreviewItem(previewModel);
-                }
+                PreviewLoaded?.Invoke(this,EventArgs.Empty);
             }
             catch (Exception e)
             {
+                
                 ClosePreview();
             }
         }
@@ -66,5 +65,7 @@ namespace PhotoScope.PreviewDisplay
         public event EventHandler PreviewClosed;
 
         public event EventHandler PreviewLoading;
+
+        public event EventHandler PreviewLoaded;
     }
 }

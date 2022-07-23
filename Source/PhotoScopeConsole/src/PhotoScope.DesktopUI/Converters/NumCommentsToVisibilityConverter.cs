@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using PhotoScope.Utilities.UI.Common;
+using PhotoScope.Utilities.UI.Common.Converters;
 
 namespace PhotoScope.DesktopUI.Converters
 {

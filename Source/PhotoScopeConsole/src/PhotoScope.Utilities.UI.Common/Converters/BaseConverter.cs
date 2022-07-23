@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace PhotoScope.Utilities.UI.Common
+namespace PhotoScope.Utilities.UI.Common.Converters
 {
     public abstract class BaseConverter : IValueConverter
     {

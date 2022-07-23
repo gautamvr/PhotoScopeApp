@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using PhotoScope.Utilities.UI.Common;
 
-namespace PhotoScope.DesktopUI.Converters
+namespace PhotoScope.Utilities.UI.Common.Converters
 {
-    public class BoolToCollapsedVisibilityConverter : BaseConverter
+    public class BoolToVisibilityConverter : BaseConverter
     {
         /// <summary>
         ///     Gets the converter instance
         /// </summary>
-        public static IValueConverter Instance { get; } = new BoolToCollapsedVisibilityConverter();
+        public static IValueConverter Instance { get; } = new BoolToVisibilityConverter();
 
         /// <summary>
         ///     Returns Visibility as Visible when value is true
@@ -30,10 +25,10 @@ namespace PhotoScope.DesktopUI.Converters
         {
             if (value == null)
             {
-                return Visibility.Collapsed;
+                return Visibility.Hidden;
             }
             bool.TryParse(value.ToString(), out var result);
-            return result ? Visibility.Visible : Visibility.Collapsed;
+            return result ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

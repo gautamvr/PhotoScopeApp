@@ -66,6 +66,8 @@ namespace PhotoScope.PreviewDisplay
                 PreviewDtoModel.PreviewItem.ImageUrl = "";
                 PreviewDtoModel.PreviewItem.NumOfComments = 0;
                 PreviewDtoModel.PreviewItem.ImageId = "";
+                PreviewDtoModel.PreviewItem.Views = 0;
+                PreviewDtoModel.PreviewItem.Description = "";
 
                 if (PreviewDtoModel.PreviewItem.PreviewItemOwner!= null) 
                 {

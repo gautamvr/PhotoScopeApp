@@ -60,9 +60,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Converters\BoolToCollapsedVisibilityConverter.cs" />
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Converters\InverseBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NumCommentsToTextConverter.cs" />
     <Compile Include="Converters\NumCommentsToVisibilityConverter.cs" />
     <Compile Include="ShellWindow.xaml.cs">

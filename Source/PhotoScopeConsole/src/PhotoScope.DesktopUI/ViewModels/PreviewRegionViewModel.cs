@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -18,6 +19,7 @@ namespace PhotoScope.DesktopUI.ViewModels
         private PreviewItem _previewItem;
         private bool _isPreviewLoading;
         private PreviewModel _previewDtoModel;
+        private bool _isPreviewOpen;
 
         public PreviewItem PreviewItem
         {
@@ -33,11 +35,18 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public bool IsPreviewOpen
         {
+            get => _isPreviewOpen;
+            set => SetField(ref _isPreviewOpen, value);
+        }
+
+        public bool IsPreviewLoading
+        {
             get => _isPreviewLoading;
             set => SetField(ref _isPreviewLoading,value);
         }
 
         public ICommand ClosePreview { get; set; }
+
         public ICommand LoadComments { get; set; }
 
 
@@ -45,6 +54,7 @@ namespace PhotoScope.DesktopUI.ViewModels
         {
             _previewController = container.Resolve<IPreviewController>();
             _previewController.PreviewLoading += OnPreviewLoading;
+            _previewController.PreviewLoaded += OnPreviewLoaded;
 
 
             _previewModelProvider = container.Resolve<IModelProvider<PreviewModel>>();
@@ -59,9 +69,15 @@ namespace PhotoScope.DesktopUI.ViewModels
             LoadComments = new Command(OnLoadComments);
         }
 
+        private void OnPreviewLoaded(object sender, EventArgs args)
+        {
+            IsPreviewLoading = false;
+        }
+
         private void OnPreviewLoading(object sender, EventArgs e)
         {
             IsPreviewOpen = true;
+            IsPreviewLoading = true;
         }
 
         private void OnLoadComments(object obj)
@@ -73,7 +89,6 @@ namespace PhotoScope.DesktopUI.ViewModels
         {
             IsPreviewOpen = false;
             _previewController.ClosePreview();
-            
         }
     }
 }

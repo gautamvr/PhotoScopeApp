@@ -16,5 +16,7 @@ namespace PhotoScope.Core.Interfaces
         event EventHandler PreviewClosed ;
 
         event EventHandler PreviewLoading ;
+
+        event EventHandler PreviewLoaded ;
     }
 }
