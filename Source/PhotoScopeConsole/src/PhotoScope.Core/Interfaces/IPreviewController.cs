@@ -5,7 +5,7 @@ namespace PhotoScope.Core.Interfaces
 {
     public interface IPreviewController
     {
-        Task LoadPreview(string imageId,string imageUrl);
+        Task<bool> LoadPreview(string imageId);
 
         void ClosePreview();
 

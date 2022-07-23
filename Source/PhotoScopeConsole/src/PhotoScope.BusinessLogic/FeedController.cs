@@ -12,12 +12,14 @@ namespace PhotoScope.BusinessLogic
         private IFeedItemAccessor _feedItemAccessor;
         private IFeedDtoPopulator _feedPopulator;
         private ISearchParameterStore _searchConfigStore;
+        private IPreviewController _previewController;
 
         public FeedController(IUnityContainer container)
         {
             _feedItemAccessor = container.Resolve<IFeedItemAccessor>();
             _feedPopulator = container.Resolve<IFeedDtoPopulator>();
             _searchConfigStore = container.Resolve<ISearchParameterStore>();
+            //_previewController = container.Resolve<IPreviewController>();
         }
 
         public async Task UpdateFeed()
@@ -39,9 +41,10 @@ namespace PhotoScope.BusinessLogic
             await UpdateFeed();
         }
 
-        public void SelectImage(string imageId)
+        public async void SelectImage(string imageId)
         {
-            
+            var isPreviewLoaded = false;
+            isPreviewLoaded = await _previewController.LoadPreview(imageId);
         }
 
         public async Task LoadMore()
@@ -51,8 +54,5 @@ namespace PhotoScope.BusinessLogic
             var feedItems = await _feedItemAccessor.GetFeedItems(searchConfig);
             _feedPopulator.AddToFeed(feedItems.ToList());
         }
-        
-
-        
     }
 }

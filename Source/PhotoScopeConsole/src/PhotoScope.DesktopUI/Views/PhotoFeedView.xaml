@@ -9,39 +9,41 @@
              mc:Ignorable="d">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" Width="Auto"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.Template>
-                    <ControlTemplate TargetType="ItemsControl">
-                        <StackPanel>
-                            <ItemsPresenter />
-                            <ext:ImageAwesome Grid.Row="0" 
+                <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Width="Auto"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.Template>
+                        <ControlTemplate TargetType="ItemsControl">
+                            <StackPanel>
+                                <ItemsPresenter />
+                                <ext:ImageAwesome Grid.Row="0" 
                                               Icon="CircleOutlineNotch" 
                                               Width="80" Height="80" Margin="0,40,0,0" 
                                               Spin="True" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                               Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
-                            <TextBlock Grid.Row="1" 
+                                <TextBlock Grid.Row="1" 
                                        Text="Loading..." 
                                        HorizontalAlignment="Center" VerticalAlignment="Center" 
                                        FontSize="20" Margin="0,20"
                                        Visibility="{Binding Path=IsLoading, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
 
-                            <Button Content="Show more" 
+                                <Button Content="Show more" 
                                     Style="{StaticResource DefaultButtonStyle}" 
                                     Command="{Binding Path=ShowMore}"
                                     Visibility="{Binding IsContentLoaded, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}"/>
-                        </StackPanel>
-                    </ControlTemplate>
-                </ItemsControl.Template>
-            </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                </ItemsControl>
 
-        </ScrollViewer>
-
+            </ScrollViewer>
+            <!--<local:PreviewRegionView></local:PreviewRegionView>-->
         
+
+
 
 
     </Grid>

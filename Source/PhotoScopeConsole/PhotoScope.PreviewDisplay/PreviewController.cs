@@ -22,16 +22,24 @@ namespace PhotoScope.PreviewDisplay
         }
 
 
-        public async Task LoadPreview(string imageId,string imageUrl)
+        public async Task<bool> LoadPreview(string imageId)
         {
-            _selectedImageId = imageId;
-            var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
-            if (previewModel != null)
+            try
             {
-                _previewPopulator.UpdatePreviewImageUrl(imageUrl);
-                _previewPopulator.UpdatePreviewItem(previewModel);
+                _selectedImageId = imageId;
+                var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
+                if (previewModel != null)
+                {
+                    _previewPopulator.UpdatePreviewItem(previewModel);
+                    return true;
+                }
+
+                return false;
             }
-            
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public void ClosePreview()
@@ -56,5 +64,7 @@ namespace PhotoScope.PreviewDisplay
         }
 
         public event EventHandler PreviewClosed;
+
+        public event EventHandler PreviewLoaded;
     }
 }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PhotoScope.Core.DTOModels;
 using PhotoScope.PreviewDisplay.Interfaces;
 
@@ -17,7 +13,6 @@ namespace PhotoScope.PreviewDisplay
         {
             PreviewDtoModel = new PreviewModel
             {
-                
                 CommentsList = new ObservableCollection<CommentItem>(),
                 PreviewItemOwner = new PreviewItemOwner()
             };
