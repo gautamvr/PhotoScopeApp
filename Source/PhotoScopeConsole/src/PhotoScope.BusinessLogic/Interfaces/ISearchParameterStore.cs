@@ -7,5 +7,7 @@ namespace PhotoScope.BusinessLogic.Interfaces
         void UpdateSearchConfig(SearchParameters searchConfig);
 
         SearchParameters GetSearchConfig();
+
+        void ResetParameters();
     }
 }

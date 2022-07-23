@@ -56,7 +56,7 @@
     <Compile Include="Interfaces\IModelProvider.cs" />
     <Compile Include="Interfaces\IFeedController.cs" />
     <Compile Include="Interfaces\IPreviewController.cs" />
-    <Compile Include="Interfaces\IRequestUpdate.cs" />
+    <Compile Include="Interfaces\ISearchController.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -44,7 +44,7 @@
                     </TextBox>
 
                     <!--Clear Button-->
-                    <Button Command="{Binding ResetCommand}" 
+                    <Button Command="{Binding ResetTextCommand}" 
                             Style="{StaticResource IconButtonStyle}"
                             Visibility="{Binding Path=IsValuePresent, 
                                         Converter={x:Static converters:BoolToVisibilityConverter.Instance}}">

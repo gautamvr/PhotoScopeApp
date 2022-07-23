@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Runtime.CompilerServices;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
@@ -16,10 +14,37 @@ namespace PhotoScope.DesktopUI.ViewModels
         private Feed _feed;
         private IModelProvider<Feed> _modelProvider;
         private IFeedController _feedController;
+        private ObservableCollection<FeedItem> _gridItems;
+        private bool _isLoading;
+        private bool _isContentLoaded;
 
         public ICommand ShowMore { get; set; }
 
         public ICommand SelectItem { get; set; }
+        
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => SetField(ref _isLoading, value);
+        }
+
+        public bool IsContentLoaded
+        {
+            get => _isContentLoaded;
+            set => SetField(ref _isContentLoaded, value);
+        }
+
+        public Feed Feed
+        {
+            get => _feed;
+            set => SetField(ref _feed, value);
+        }
+
+        public ObservableCollection<FeedItem> GridItems
+        {
+            get => _gridItems;
+            set => SetField(ref _gridItems, value);
+        }
 
         public PhotoFeedViewModel(IUnityContainer container)
         {
@@ -27,17 +52,32 @@ namespace PhotoScope.DesktopUI.ViewModels
             IsContentLoaded = false;
             _modelProvider = container.Resolve<IModelProvider<Feed>>();
             _feedController = container.Resolve<IFeedController>();
+            _feedController.FeedLoading += OnFeedLoading;
+            _feedController.FeedLoaded += OnFeedLoaded;
+            _feedController.FeedCleared += OnFeedCleared;
 
             ShowMore = new Command(OnShowMore);
             SelectItem = new Command(OnItemSelected);
 
             Feed = _modelProvider.GetInitialModel();
             GridItems = Feed?.FeedItems;
+        }
 
-            if (GridItems != null)
-            {
-                GridItems.CollectionChanged += OnGridItemsChanged;
-            }
+        private void OnFeedCleared(object sender, EventArgs e)
+        {
+            IsContentLoaded = false;
+        }
+
+        private void OnFeedLoaded(object sender, EventArgs e)
+        {
+            IsLoading = false;
+            IsContentLoaded = true;
+        }
+
+        private void OnFeedLoading(object sender, EventArgs e)
+        {
+            IsLoading = true;
+            IsContentLoaded = false;
         }
 
         private void OnItemSelected(object obj)
@@ -54,6 +94,7 @@ namespace PhotoScope.DesktopUI.ViewModels
             try
             {
                 IsLoading = true;
+                IsContentLoaded = false;
                 await _feedController.LoadMore();
             }
             catch (Exception e)
@@ -64,50 +105,7 @@ namespace PhotoScope.DesktopUI.ViewModels
             finally
             {
                 IsLoading = false;
-            }
-            
-        }
-
-        private void OnGridItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            IsContentLoaded = _gridItems?.Count > 0;
-        }
-
-        private bool _isLoading;
-
-        public bool IsLoading
-        {
-            get { return _isLoading; }
-            set
-            {
-                SetField(ref _isLoading, value);
-            }
-        }
-
-        private bool _isContentLoaded;
-
-        public bool IsContentLoaded
-        {
-            get { return _isContentLoaded; }
-            set { SetField(ref _isContentLoaded, value); }
-        }
-
-
-        public Feed Feed
-        {
-            get => _feed;
-            set => SetField(ref _feed, value);
-        }
-
-        private ObservableCollection<FeedItem> _gridItems;
-
-        public ObservableCollection<FeedItem> GridItems
-        {
-            get => _gridItems;
-            set
-            {
-                SetField(ref _gridItems, value);
-                
+                IsContentLoaded = true;
             }
         }
     }

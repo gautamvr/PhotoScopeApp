@@ -32,7 +32,7 @@ namespace PhotoScope.PreviewDisplay
                 var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
                 PreviewLoaded?.Invoke(this,EventArgs.Empty);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 
                 ClosePreview();

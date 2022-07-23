@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using PhotoScope.BusinessLogic.Interfaces;
+using PhotoScope.Core.DTOModels;
 using PhotoScope.Core.Interfaces;
 
 namespace PhotoScope.BusinessLogic
@@ -11,34 +12,37 @@ namespace PhotoScope.BusinessLogic
     {
         private IFeedItemAccessor _feedItemAccessor;
         private IFeedDtoPopulator _feedPopulator;
-        private ISearchParameterStore _searchConfigStore;
         private IPreviewController _previewController;
+
+        private SearchParameters _searchParameters;
 
         public FeedController(IUnityContainer container)
         {
             _feedItemAccessor = container.Resolve<IFeedItemAccessor>();
             _feedPopulator = container.Resolve<IFeedDtoPopulator>();
-            _searchConfigStore = container.Resolve<ISearchParameterStore>();
             _previewController = container.Resolve<IPreviewController>();
         }
 
-        public async Task UpdateFeed()
+        public async Task UpdateFeed(SearchParameters searchParams)
         {
+            _searchParameters = searchParams;
             _feedPopulator.ClearFeed();
-            var searchConfig = _searchConfigStore.GetSearchConfig();
-            var feedItems = await _feedItemAccessor.GetFeedItems(searchConfig);
+            FeedLoading?.Invoke(this, EventArgs.Empty);
+            var feedItems = await _feedItemAccessor.GetFeedItems(_searchParameters);
             _feedPopulator.ClearFeed();
             _feedPopulator.AddToFeed(feedItems.ToList());
+            FeedLoaded?.Invoke(this, EventArgs.Empty);
         }
 
         public void ClearFeed()
         {
             _feedPopulator.ClearFeed();
+            FeedCleared?.Invoke(this, EventArgs.Empty);
         }
 
         public async Task RefreshFeed()
         {
-            await UpdateFeed();
+            await UpdateFeed(_searchParameters);
         }
 
         public async void SelectImage(string imageId)
@@ -48,10 +52,13 @@ namespace PhotoScope.BusinessLogic
 
         public async Task LoadMore()
         {
-            var searchConfig = _searchConfigStore.GetSearchConfig();
-            searchConfig.CurrentPage += 1;
-            var feedItems = await _feedItemAccessor.GetFeedItems(searchConfig);
+            _searchParameters.CurrentPage += 1;
+            var feedItems = await _feedItemAccessor.GetFeedItems(_searchParameters);
             _feedPopulator.AddToFeed(feedItems.ToList());
         }
+
+        public event EventHandler FeedLoading;
+        public event EventHandler FeedLoaded;
+        public event EventHandler FeedCleared;
     }
 }

@@ -7,7 +7,7 @@ namespace PhotoScope.PreviewDisplay
 {
     public class PreviewPopulator : IPreviewPopulator
     {
-        public PreviewModel PreviewDtoModel { get; set; }
+        public PreviewModel PreviewDtoModel { get; }
 
         public PreviewPopulator()
         {
