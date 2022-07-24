@@ -7,17 +7,19 @@
     <Style TargetType="Button" x:Key="DefaultButtonStyle">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="{StaticResource PrimaryBorder}"/>
-        <Setter Property="Padding" Value="15,3"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="15,5"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="TextBlock.TextAlignment" Value="Center"/>
-        <Setter Property="TextBlock.FontSize" Value="18"/>
+        <Setter Property="TextBlock.FontSize" Value="20"/>
         <Setter Property="Cursor" Value="Hand"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" 
+                    <Border CornerRadius="5" 
+                        Background="{TemplateBinding Background}" 
                             Padding="{TemplateBinding Padding}" 
                             Margin="{TemplateBinding Margin}">
                         <ContentPresenter/>
@@ -50,46 +52,32 @@
                 </Trigger.ExitActions>
             </Trigger>
         </Style.Triggers>
-
-
-
     </Style>
 
-    <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
-        <Setter Property="Background" Value="White"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation
-                                Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
-                                To="Gray"
-                                Duration="0:0:0.02"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation
-                                Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
-                                To="White"
-                                Duration="0:0:0.02"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.ExitActions>
-            </Trigger>
-        </Style.Triggers>
+    
 
-    </Style>
-
-    <Style TargetType="TextBox">
+    <Style TargetType="TextBox" x:Key="DefaultTextBoxStyle">
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryBorder}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="0 0"/>
+        <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="18"/>
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="BoldTextBlockStyle">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="DefaultTextBlockStyle">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Padding" Value="10,0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+    </Style>
 </ResourceDictionary>

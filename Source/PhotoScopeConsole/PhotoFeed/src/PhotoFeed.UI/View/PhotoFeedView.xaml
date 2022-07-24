@@ -7,6 +7,10 @@
              xmlns:local="clr-namespace:PhotoFeed.UI.View"
              xmlns:converters="clr-namespace:PhotoScope.Utilities.UI.Common.Converters;assembly=PhotoScope.Utilities.UI.Common"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Themes/FeedTheme.xaml"/>
+    </UserControl.Resources>
+
     <Grid Name="PhotoFeedGrid">
         <Border MinHeight="500"/>
         <ScrollViewer Grid.Column="0" 
@@ -47,18 +51,14 @@
                         </ControlTemplate>
                     </ItemsControl.Template>
                 </ItemsControl>
-                <Button Content="Show more" 
-                    Command="{Binding Path=ShowMore}"
-                    Visibility="{Binding IsContentLoaded, Converter={x:Static converters:BoolToVisibilityConverter.Instance}}"/>
+
+                <!--Show More button-->
+                <Button Style="{StaticResource DefaultButtonStyle}"
+                        Content="Show more" 
+                        Command="{Binding Path=ShowMore}"
+                        Visibility="{Binding IsContentLoaded, Converter={x:Static converters:BoolToVisibilityConverter.Instance}}"/>
             </StackPanel>
 
         </ScrollViewer>
-
-
-
-
-
-
-
     </Grid>
 </UserControl>

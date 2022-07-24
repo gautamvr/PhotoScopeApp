@@ -22,7 +22,7 @@ namespace PhotoFeed.UI.View
     {
         public PhotoFeedView()
         {
-            ApplyTheme();
+            //ApplyTheme();
             InitializeComponent();
         }
 

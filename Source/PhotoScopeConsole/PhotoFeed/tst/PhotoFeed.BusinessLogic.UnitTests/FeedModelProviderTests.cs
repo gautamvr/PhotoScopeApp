@@ -29,7 +29,7 @@ namespace PhotoFeed.BusinessLogic.UnitTests
         }
 
         [Test]
-        public void TestGetInitialModel()
+        public void TestGetInitialModel_ReturnsTheInitialDtoModelFromPopulator()
         {
             var feedModelProvider = _container.Resolve<FeedModelProvider>();
 
