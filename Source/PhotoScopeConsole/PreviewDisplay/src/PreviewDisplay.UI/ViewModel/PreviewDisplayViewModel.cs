@@ -27,13 +27,7 @@ namespace PreviewDisplay.UI.ViewModel
             get => _previewDtoModel;
             set => SetField(ref _previewDtoModel, value);
         }
-
-        public bool IsPreviewOpen
-        {
-            get => _isPreviewOpen;
-            set => SetField(ref _isPreviewOpen, value);
-        }
-
+        
         public bool IsPreviewLoading
         {
             get => _isPreviewLoading;
@@ -71,7 +65,6 @@ namespace PreviewDisplay.UI.ViewModel
 
         private void OnPreviewLoading(object sender, EventArgs e)
         {
-            IsPreviewOpen = true;
             IsPreviewLoading = true;
         }
 
@@ -82,7 +75,6 @@ namespace PreviewDisplay.UI.ViewModel
 
         private void OnClosePreviewCommand(object obj)
         {
-            IsPreviewOpen = false;
             _previewController.ClosePreview();
         }
     }

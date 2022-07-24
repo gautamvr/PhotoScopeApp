@@ -46,6 +46,7 @@
 
                         <!--Clear Button-->
                         <Button Style="{StaticResource IconButtonStyle}"
+                                Margin="10,0"
                                 Command="{Binding ResetTextCommand}" 
                                 Visibility="{Binding Path=IsValuePresent,
                                         Converter={x:Static converters:BoolToVisibilityConverter.Instance}}">
@@ -117,8 +118,10 @@
                     </StackPanel>
 
                     <!--Reset Parameters Button-->
-                    <Button Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right"
+                    <Button Grid.Column="2" Grid.Row="1" 
+                            HorizontalAlignment="Right"
                             Margin="40,0"
+                            Command="{Binding Path=ResetParametersCommand}"
                             Style="{StaticResource DefaultButtonStyle}"
                             FontSize="20"
                             Width="180" Height="34"

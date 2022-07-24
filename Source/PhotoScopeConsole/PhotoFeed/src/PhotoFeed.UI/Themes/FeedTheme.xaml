@@ -2,24 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-
-
-
-
-
-
-
-
-
-
-
     <DataTemplate x:Key="FeedItemTemplate">
         <Border BorderThickness="2">
             <StackPanel Orientation="Vertical">
                 <Border Height="130" >
-                    <Button Cursor="Hand" 
+                    <Button Cursor="Hand" BorderBrush="Transparent"
                             Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},
-                             Path=DataContext.SelectItem}" 
+                             Path=DataContext.SelectItemCommand}" 
                             CommandParameter="{Binding Path=ItemId}">
                         <Image Stretch="Uniform" Name="FeedItem">
                             <Image.Source>
@@ -28,7 +17,7 @@
                         </Image>
                     </Button>
                 </Border>
-                <TextBlock Text="{Binding Path=Title}"  Width="{Binding ActualWidth, ElementName=FeedItem}" TextTrimming="WordEllipsis" />
+                <!--<TextBlock Text="{Binding Path=Title}"  Width="{Binding ActualWidth, ElementName=FeedItem}" TextTrimming="WordEllipsis" />-->
             </StackPanel>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">

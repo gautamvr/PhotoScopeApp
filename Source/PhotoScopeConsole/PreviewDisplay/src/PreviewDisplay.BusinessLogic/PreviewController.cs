@@ -24,14 +24,14 @@ namespace PreviewDisplay.BusinessLogic
             try
             {
                 _previewPopulator.ClearPreviewItem();
+                _previewPopulator.OpenPreviewDisplay(); 
                 PreviewLoading?.Invoke(this,EventArgs.Empty);
                 _selectedImageId = imageId;
-                var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
+                 await _previewItemAccessor.GetPreviewItem(imageId);
                 PreviewLoaded?.Invoke(this,EventArgs.Empty);
             }
             catch (Exception)
             {
-                
                 ClosePreview();
             }
         }
@@ -39,6 +39,7 @@ namespace PreviewDisplay.BusinessLogic
         public void ClosePreview()
         {
             PreviewClosed?.Invoke(this,EventArgs.Empty);
+            _previewPopulator.ClosePreviewDisplay();
             _previewPopulator.ClearPreviewItem();
         }
 

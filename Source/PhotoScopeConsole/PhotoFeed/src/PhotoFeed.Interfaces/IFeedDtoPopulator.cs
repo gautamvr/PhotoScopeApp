@@ -10,5 +10,7 @@ namespace PhotoFeed.Interfaces
         void AddToFeed(IList<FeedItem> item);
 
         void ClearFeed();
+
+        void UpdateResultsTag(string resultTag);
     }
 }

@@ -7,6 +7,10 @@ namespace PreviewDisplay.Interfaces
     {
         void ClearPreviewItem();
 
+        void OpenPreviewDisplay();
+
+        void ClosePreviewDisplay();
+
         void UpdatePreviewItem(PreviewItem item);
 
         void UpdatePreviewImageUrl(string url);

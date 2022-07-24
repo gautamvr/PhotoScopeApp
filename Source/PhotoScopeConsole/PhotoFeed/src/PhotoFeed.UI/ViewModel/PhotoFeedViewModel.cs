@@ -18,9 +18,11 @@ namespace PhotoFeed.UI.ViewModel
         private bool _isLoading;
         private bool _isContentLoaded;
 
-        public ICommand ShowMore { get; set; }
+        public ICommand ShowMoreCommand { get; set; }
 
-        public ICommand SelectItem { get; set; }
+        public ICommand SelectItemCommand { get; set; }
+
+        public ICommand ClearFeedCommand { get; set; }
         
         public bool IsLoading
         {
@@ -56,11 +58,17 @@ namespace PhotoFeed.UI.ViewModel
             _feedController.FeedLoaded += OnFeedLoaded;
             _feedController.FeedCleared += OnFeedCleared;
 
-            ShowMore = new Command(OnShowMore);
-            SelectItem = new Command(OnItemSelected);
+            ShowMoreCommand = new Command(OnShowMore);
+            SelectItemCommand = new Command(OnItemSelected);
+            ClearFeedCommand = new Command(OnClearFeed);
 
             Feed = _modelProvider.GetInitialModel();
             GridItems = Feed?.FeedItems;
+        }
+
+        private void OnClearFeed(object obj)
+        {
+            _feedController.ClearFeed();
         }
 
         private void OnFeedCleared(object sender, EventArgs e)

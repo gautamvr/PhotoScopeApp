@@ -13,7 +13,8 @@ namespace PhotoFeed.BusinessLogic
         {
             FeedDto = new Feed
             {
-                FeedItems = new ObservableCollection<FeedItem>()
+                FeedItems = new ObservableCollection<FeedItem>(),
+                ResultsTag = "",
             };
         }
 
@@ -34,11 +35,22 @@ namespace PhotoFeed.BusinessLogic
         public void ClearFeed()
         {
             FeedDto.FeedItems.Clear();
+            FeedDto.ResultsTag = "";
         }
 
         public Feed GetDtoModel()
         {
             return FeedDto;
+        }
+
+        public void UpdateResultsTag(string resultsTag)
+        {
+            FeedDto.ResultsTag = resultsTag;
+        }
+
+        public void UpdateNumberOfItems()
+        {
+
         }
     }
 }

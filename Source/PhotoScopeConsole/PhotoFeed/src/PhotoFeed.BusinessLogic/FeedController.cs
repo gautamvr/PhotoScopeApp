@@ -27,9 +27,11 @@ namespace PhotoFeed.BusinessLogic
         {
             _searchParameters = searchParams;
             _feedPopulator.ClearFeed();
+            
             FeedLoading?.Invoke(this, EventArgs.Empty);
             var feedItems = await _feedItemAccessor.GetFeedItems(_searchParameters);
             _feedPopulator.ClearFeed();
+            _feedPopulator.UpdateResultsTag(_searchParameters.SearchTag);
             _feedPopulator.AddToFeed(feedItems.ToList());
             FeedLoaded?.Invoke(this, EventArgs.Empty);
         }
@@ -37,6 +39,7 @@ namespace PhotoFeed.BusinessLogic
         public void ClearFeed()
         {
             _feedPopulator.ClearFeed();
+            _previewController.ClosePreview();
             FeedCleared?.Invoke(this, EventArgs.Empty);
         }
 

@@ -17,8 +17,15 @@ namespace PreviewDisplay.BusinessLogic
                 {
                     CommentsList = new ObservableCollection<CommentItem>(),
                     PreviewItemOwner = new PreviewItemOwner()
-                }
+                },
+                IsPreviewOpen = false
+                
             };
+        }
+
+        public void ClosePreviewDisplay()
+        {
+            PreviewDtoModel.IsPreviewOpen = false;
         }
 
         public void UpdatePreviewItem(PreviewItem previewItem)
@@ -80,6 +87,11 @@ namespace PreviewDisplay.BusinessLogic
                 
             }
 
+        }
+
+        public void OpenPreviewDisplay()
+        {
+            PreviewDtoModel.IsPreviewOpen = true;
         }
     }
 }
