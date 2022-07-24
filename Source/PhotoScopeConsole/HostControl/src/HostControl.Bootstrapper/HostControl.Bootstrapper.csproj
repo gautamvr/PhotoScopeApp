@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{769931B1-728A-416C-972D-D99728E05F9D}</ProjectGuid>
+    <ProjectGuid>{11473FE2-65DE-491C-99A3-C79E1E956DA3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PhotoScope.DesktopUI</RootNamespace>
-    <AssemblyName>PhotoScope.DesktopUI</AssemblyName>
+    <RootNamespace>HostControl.Bootstrapper</RootNamespace>
+    <AssemblyName>HostControl.Bootstrapper</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -60,30 +60,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Converters\NumCommentsToTextConverter.cs" />
-    <Compile Include="Converters\NumCommentsToVisibilityConverter.cs" />
+    <Compile Include="AppStart\HostBootstrapper.cs" />
     <Compile Include="ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\PhotoFeedViewModel.cs" />
-    <Compile Include="ViewModels\PhotoScopeConsoleViewModel.cs" />
-    <Compile Include="ViewModels\PreviewRegionViewModel.cs" />
-    <Compile Include="ViewModels\SearchBarViewModel.cs" />
-    <Compile Include="Views\PhotoFeedView.xaml.cs">
-      <DependentUpon>PhotoFeedView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PhotoScopeConsoleView.xaml.cs">
-      <DependentUpon>PhotoScopeConsoleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PreviewRegionView.xaml.cs">
-      <DependentUpon>PreviewRegionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchBarView.xaml.cs">
-      <DependentUpon>SearchBarView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppStart\ConsoleBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -110,71 +92,57 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FontAwesome.WPF">
-      <Version>4.7.0.9</Version>
-    </PackageReference>
-    <PackageReference Include="Prism.Unity">
-      <Version>6.3.0</Version>
+    <PackageReference Include="Unity">
+      <Version>4.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Icons\CrossIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <ProjectReference Include="..\..\..\Core\src\PhotoScope.Core\PhotoScope.Core.csproj">
+      <Project>{486f6c02-6eff-42a5-950c-a489fb797069}</Project>
+      <Name>PhotoScope.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PhotoFeed\src\PhotoFeed.BusinessLogic\PhotoFeed.BusinessLogic.csproj">
+      <Project>{2f23565a-ec94-4086-b490-f0df9a7c3639}</Project>
+      <Name>PhotoFeed.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PhotoFeed\src\PhotoFeed.Interfaces\PhotoFeed.Interfaces.csproj">
+      <Project>{de587014-c0a3-4812-9143-edbaf6f5e358}</Project>
+      <Name>PhotoFeed.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PreviewDisplay\src\PreviewDisplay.BusinessLogic\PreviewDisplay.BusinessLogic.csproj">
+      <Project>{1e1c77b8-c9dc-4e0b-b07c-65b8411eaa3c}</Project>
+      <Name>PreviewDisplay.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PreviewDisplay\src\PreviewDisplay.Interfaces\PreviewDisplay.Interfaces.csproj">
+      <Project>{7765de7d-add3-41c5-a93f-ecebab775094}</Project>
+      <Name>PreviewDisplay.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SearchDashboard\src\SearchDashboard.BusinessLogic\SearchDashboard.BusinessLogic.csproj">
+      <Project>{c1a7da26-26eb-4ec3-8309-b7a3b07cda81}</Project>
+      <Name>SearchDashboard.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SearchDashboard\src\SearchDashboard.Interfaces\SearchDashboard.Interfaces.csproj">
+      <Project>{5c9d1588-35fd-40bc-ac64-9b024641a517}</Project>
+      <Name>SearchDashboard.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceAccess\src\ServiceAccess.FlickrService\ServiceAccess.FlickrService.csproj">
+      <Project>{904579B3-0AEF-478B-B329-4A09A523830D}</Project>
+      <Name>ServiceAccess.FlickrService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceAccess\src\ServiceAccess.Interfaces\ServiceAccess.Interfaces.csproj">
+      <Project>{7053913c-3229-44a8-bd70-757f15cd21ef}</Project>
+      <Name>ServiceAccess.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HostControl.ConsoleUI\HostControl.ConsoleUI.csproj">
+      <Project>{04100F12-3F2E-4EDE-BF6F-261B6E5D091C}</Project>
+      <Name>HostControl.ConsoleUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Page Include="ShellWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\FeedTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\PreviewTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PhotoFeedView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PhotoScopeConsoleView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PreviewRegionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SearchBarView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\PhotoScope.PreviewDisplay\PhotoScope.PreviewDisplay.csproj">
-      <Project>{c52fad36-6267-4c6f-ba89-b59518d1824f}</Project>
-      <Name>PhotoScope.PreviewDisplay</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PhotoScope.Core\PhotoScope.Core.csproj">
-      <Project>{486F6C02-6EFF-42A5-950C-A489FB797069}</Project>
-      <Name>PhotoScope.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PhotoScope.ServiceAccessLayer\PhotoScope.ServiceAccessLayer.csproj">
-      <Project>{3c766051-3555-4a2c-8cde-016e79e99f49}</Project>
-      <Name>PhotoScope.ServiceAccessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PhotoScope.Utilities.UI.Common\PhotoScope.Utilities.UI.Common.csproj">
-      <Project>{8220a190-b4db-40ab-894d-073226622437}</Project>
-      <Name>PhotoScope.Utilities.UI.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CustomControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
