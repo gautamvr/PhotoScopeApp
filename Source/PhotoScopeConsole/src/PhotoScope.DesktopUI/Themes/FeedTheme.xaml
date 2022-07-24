@@ -2,34 +2,35 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
    
     <DataTemplate x:Key="FeedItemTemplate">
-        <Border Margin="2" >
-            <Border BorderThickness="2">
-                <StackPanel Orientation="Vertical">
-                    <Border Height="130">
-                        <Button Cursor="Hand">
-                            <Image Stretch="Uniform" Name="FeedItem">
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding Path=Url}"/>
-                                </Image.Source>
-                            </Image>
-                        </Button>
-                    </Border>
-                    <TextBlock Text="{Binding Path=Title}" TextTrimming="WordEllipsis" TextWrapping="Wrap"/>
-                </StackPanel>
-                <Border.Style>
-                    <Style TargetType="{x:Type Border}">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Effect">
-                                    <Setter.Value>
-                                        <DropShadowEffect ShadowDepth="0" Color="Blue" Opacity="1" BlurRadius="20"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-            </Border>
+        <Border BorderThickness="2">
+            <StackPanel Orientation="Vertical">
+                <Border Height="130" >
+                    <Button Cursor="Hand" 
+                            Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},
+                             Path=DataContext.SelectItem}" 
+                            CommandParameter="{Binding Path=ItemId}">
+                        <Image Stretch="Uniform" Name="FeedItem">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Path=Url}"/>
+                            </Image.Source>
+                        </Image>
+                    </Button>
+                </Border>
+                <TextBlock Text="{Binding Path=Title}"  Width="{Binding ActualWidth, ElementName=FeedItem}" TextTrimming="WordEllipsis" />
+            </StackPanel>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect ShadowDepth="0" Color="Blue" Opacity="1" BlurRadius="20"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
         </Border>
     </DataTemplate>
 

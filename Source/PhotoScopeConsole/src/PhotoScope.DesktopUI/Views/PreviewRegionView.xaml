@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="PhotoScope.DesktopUI.Views.PreviewRegionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ext="http://schemas.fontawesome.io/icons/"
+             xmlns:converter="clr-namespace:PhotoScope.DesktopUI.Converters"
+             xmlns:converters="clr-namespace:PhotoScope.Utilities.UI.Common.Converters;assembly=PhotoScope.Utilities.UI.Common"
+             Name="PreviewRegion" mc:Ignorable="d" Width="600" 
+             Visibility="{Binding Path=IsPreviewOpen, Converter={x:Static converters:BoolToCollapsedVisibilityConverter.Instance}}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Name="PhotoFeedGrid" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Close Preview button-->
+            <Button Grid.Row="0" 
+                Content="Close Preview" 
+                HorizontalAlignment="Left" VerticalAlignment="Top" 
+                Command="{Binding Path=ClosePreview}"/>
+
+            <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto" 
+                      DataContext="{Binding Path=PreviewItem}">
+
+
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Visibility="{Binding  ElementName=PreviewRegion, Path=DataContext.IsPreviewLoading, 
+                                        Converter={x:Static converters:BoolToCollapsedVisibilityConverter.Instance}}">
+
+                        <ext:ImageAwesome Grid.Row="0" 
+                                      Icon="CircleOutlineNotch" 
+                                      Width="80" Height="80" Margin="0,40,0,0" 
+                                      Spin="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="1" 
+                           Text="Loading..." 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           FontSize="20" Margin="0,20"/>
+                    </StackPanel>
+
+                    <Grid Margin="10,30" 
+                      Visibility="{Binding  ElementName=PreviewRegion, Path=DataContext.IsPreviewLoading, 
+                                    Converter={x:Static converters:InverseBoolToVisibilityConverter.Instance}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <!--Preview Item-->
+                        <Grid Grid.Row="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+
+
+                            <!--User Name-->
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+                                <Image Source="{Binding Path=PreviewItemOwner.DisplayPhotoUrl}" Height="24" Width="24"/>
+                                <TextBlock Text="{Binding Path=PreviewItemOwner.FullName}" TextTrimming="CharacterEllipsis" Height="40"/>
+                            </StackPanel>
+
+                            <!--Preview Image-->
+                            <Border Grid.Row="2" >
+                                <Image Source="{Binding Path=ImageUrl}" Stretch="Uniform"/>
+                            </Border>
+                        </Grid>
+
+                        <!--Image Title-->
+                        <TextBlock Grid.Row="1" Text="{Binding Path=Title}" Height="24"/>
+
+                        <!--Image Details-->
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Description-->
+                            <TextBlock Grid.Row="0" Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow"/>
+
+                            <!--Views-->
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <TextBlock Text="Views :"/>
+                                <TextBlock Text="{Binding Path= Views}"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!--Comments-->
+                        <StackPanel  Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToTextConverter.Instance}}"></TextBlock>
+
+                            <Button Content="Load Comments"
+                                Style="{StaticResource DefaultButtonStyle}" 
+                                Command="{Binding ElementName=PreviewRegion, Path=DataContext.LoadComments}"
+                                Visibility="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToVisibilityConverter.Instance}}"/>
+
+                        </StackPanel>
+
+                        <ItemsControl Grid.Row="4" ItemsSource="{Binding Path=CommentsList}" ItemTemplate="{StaticResource ResourceKey=CommentItemTemplate}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
+                    </Grid>
+                </Grid>
+
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

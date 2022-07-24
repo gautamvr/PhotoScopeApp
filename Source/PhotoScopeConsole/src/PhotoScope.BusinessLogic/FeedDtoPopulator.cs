@@ -7,7 +7,7 @@ namespace PhotoScope.BusinessLogic
 {
     public class FeedDtoPopulator : IFeedDtoPopulator
     {
-        public Feed FeedDto { get; set; }
+        public Feed FeedDto { get; }
 
         public FeedDtoPopulator()
         {

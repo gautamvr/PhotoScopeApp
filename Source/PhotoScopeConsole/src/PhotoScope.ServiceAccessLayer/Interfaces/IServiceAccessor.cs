@@ -10,6 +10,12 @@ namespace PhotoScope.ServiceAccessLayer.Interfaces
 
         Task<PhotoList> GetImagesAsync(SearchParameters keyword);
 
-        Task<PhotoList> GetCommentsAsync(string imageId);
+        Task<Comments> GetCommentsAsync(string imageId);
+
+        Task<PhotoInfo> GetPhotoInfoAsync(string imageId);
+
+        string GetBuddyIconUrl(string farmId, string serverId, string nsid);
+
+        string GetImageUrl(string serverId, string imageId, string secret);
     }
 }

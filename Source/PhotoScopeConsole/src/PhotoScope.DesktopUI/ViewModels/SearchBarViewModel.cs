@@ -13,9 +13,8 @@ namespace PhotoScope.DesktopUI.ViewModels
 {
     public class SearchBarViewModel : ViewModelBase
     {
-        private IFeedController _photoFeedHandler;
+        private ISearchController _searchController;
         private IModelProvider<SearchParameters> _modelProvider;
-        private PhotoFeedViewModel _feedViewModel;
 
         private SearchParameters _searchParameters;
 
@@ -35,19 +34,33 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public ICommand SearchCommand { get; set; }
 
-        public ICommand ResetCommand { get; set; }
+        public ICommand ResetParametersCommand { get; set; }
+        public ICommand ClearResultsCommand { get; set; }
+
+        public ICommand ResetTextCommand { get; set; }
 
         public SearchBarViewModel(IUnityContainer container)
         {
-            _photoFeedHandler = container.Resolve<IFeedController>();
-            _feedViewModel = container.Resolve<PhotoFeedViewModel>();
+            _searchController = container.Resolve<ISearchController>();
             _modelProvider = container.Resolve<IModelProvider<SearchParameters>>();
 
             SearchParameters = _modelProvider.GetInitialModel();
             SearchParameters.PropertyChanged += OnSearchParametersChanged;
 
             SearchCommand = new Command(OnSearchCommand);
-            ResetCommand = new Command(OnResetCommand);
+            ResetTextCommand = new Command(OnResetTextCommand);
+            ResetParametersCommand = new Command(OnResetParamCommand);
+            ClearResultsCommand = new Command(OnClearResultsCommand);
+        }
+
+        private void OnResetTextCommand(object obj)
+        {
+            SearchParameters.SearchTag = "";
+        }
+
+        private void OnClearResultsCommand(object obj)
+        {
+            _searchController.ClearResults();
         }
 
         private void OnSearchParametersChanged(object sender, PropertyChangedEventArgs e)
@@ -56,27 +69,21 @@ namespace PhotoScope.DesktopUI.ViewModels
             IsValuePresent = !string.IsNullOrEmpty(keyWord) && keyWord.Length > 0;
         }
 
-        private void OnResetCommand(object obj)
+        private void OnResetParamCommand(object obj)
         {
-            SearchParameters.SearchTag = "";
-
+            _searchController.ResetParameters();
         }
 
-        public async void OnSearchCommand(object searchKeyWord)
+        public async void OnSearchCommand(object obj)
         {
             try
             {
-                _feedViewModel.IsLoading = true;
-                await _photoFeedHandler.UpdateFeed();
+                await _searchController.Search();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
-            }
-            finally
-            {
-                _feedViewModel.IsLoading = false;
             }
         }
     }

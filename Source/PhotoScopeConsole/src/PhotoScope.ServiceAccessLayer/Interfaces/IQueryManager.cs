@@ -7,11 +7,11 @@ namespace PhotoScope.ServiceAccessLayer.Interfaces
         IQueryBuilder QueryBuilder { set; }
 
         string GetBaseAddress();
-
-        void UpdateQueryBuilder(IQueryBuilder queryBuilder);
-
+        
         string GetImageQuery(string apiKey, SearchParameters searchConfig);
 
-        string GetCommentsQuery(string apiKey, SearchParameters searchConfig);
+        string GetCommentsQuery(string apiKey, string imageId);
+
+        string GetImageInfoQuery(string apiKey, string imageId);
     }
 }

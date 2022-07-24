@@ -15,12 +15,13 @@ namespace PhotoScope.DesktopUI.ViewModels
 
         public PhotoFeedViewModel FeedViewModel { get; set; }
 
+        public PreviewRegionViewModel PreviewViewModel { get; set; }
+
         public PhotoScopeConsoleViewModel(IUnityContainer container)
         {
             FeedViewModel = container.Resolve<PhotoFeedViewModel>();
             SearchBarViewModel = container.Resolve<SearchBarViewModel>();
-            
-
+            PreviewViewModel = container.Resolve<PreviewRegionViewModel>();
         }
     }
 }
