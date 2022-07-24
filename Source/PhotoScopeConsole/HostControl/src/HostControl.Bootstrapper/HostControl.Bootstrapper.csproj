@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11473FE2-65DE-491C-99A3-C79E1E956DA3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HostControl.Bootstrapper</RootNamespace>
+    <AssemblyName>HostControl.Bootstrapper</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppStart\HostBootstrapper.cs" />
+    <Compile Include="ShellWindow.xaml.cs">
+      <DependentUpon>ShellWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Unity">
+      <Version>4.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\PhotoScope.Core\PhotoScope.Core.csproj">
+      <Project>{486f6c02-6eff-42a5-950c-a489fb797069}</Project>
+      <Name>PhotoScope.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PhotoFeed\src\PhotoFeed.BusinessLogic\PhotoFeed.BusinessLogic.csproj">
+      <Project>{2f23565a-ec94-4086-b490-f0df9a7c3639}</Project>
+      <Name>PhotoFeed.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PhotoFeed\src\PhotoFeed.Interfaces\PhotoFeed.Interfaces.csproj">
+      <Project>{de587014-c0a3-4812-9143-edbaf6f5e358}</Project>
+      <Name>PhotoFeed.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PreviewDisplay\src\PreviewDisplay.BusinessLogic\PreviewDisplay.BusinessLogic.csproj">
+      <Project>{1e1c77b8-c9dc-4e0b-b07c-65b8411eaa3c}</Project>
+      <Name>PreviewDisplay.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PreviewDisplay\src\PreviewDisplay.Interfaces\PreviewDisplay.Interfaces.csproj">
+      <Project>{7765de7d-add3-41c5-a93f-ecebab775094}</Project>
+      <Name>PreviewDisplay.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SearchDashboard\src\SearchDashboard.BusinessLogic\SearchDashboard.BusinessLogic.csproj">
+      <Project>{c1a7da26-26eb-4ec3-8309-b7a3b07cda81}</Project>
+      <Name>SearchDashboard.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SearchDashboard\src\SearchDashboard.Interfaces\SearchDashboard.Interfaces.csproj">
+      <Project>{5c9d1588-35fd-40bc-ac64-9b024641a517}</Project>
+      <Name>SearchDashboard.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceAccess\src\ServiceAccess.FlickrService\ServiceAccess.FlickrService.csproj">
+      <Project>{904579B3-0AEF-478B-B329-4A09A523830D}</Project>
+      <Name>ServiceAccess.FlickrService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ServiceAccess\src\ServiceAccess.Interfaces\ServiceAccess.Interfaces.csproj">
+      <Project>{7053913c-3229-44a8-bd70-757f15cd21ef}</Project>
+      <Name>ServiceAccess.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HostControl.ConsoleUI\HostControl.ConsoleUI.csproj">
+      <Project>{04100F12-3F2E-4EDE-BF6F-261B6E5D091C}</Project>
+      <Name>HostControl.ConsoleUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ShellWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

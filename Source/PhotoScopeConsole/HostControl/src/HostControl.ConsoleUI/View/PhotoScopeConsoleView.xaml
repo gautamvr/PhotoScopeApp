@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="HostControl.ConsoleUI.View.PhotoScopeConsoleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HostControl.ConsoleUI.View"
+             xmlns:view="clr-namespace:SearchDashboard.UI.View;assembly=SearchDashboard.UI"
+             xmlns:view1="clr-namespace:PhotoFeed.UI.View;assembly=PhotoFeed.UI"
+             xmlns:view2="clr-namespace:PreviewDisplay.UI.View;assembly=PreviewDisplay.UI"
+             mc:Ignorable="d">
+
+    <Grid Margin="25" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <view:SearchDashboardView Grid.Row="0" Grid.Column="0"
+                             DataContext="{Binding Path=SearchDashboardViewModel}"
+                             VerticalAlignment="Top"/>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <view1:PhotoFeedView Grid.Column="0" VerticalAlignment="Stretch"
+                                 DataContext="{Binding Path=PhotoFeedViewModel}" />
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <!--<GridSplitter Grid.Column="0" Margin="2,0,2,0"
+                      Width="3" Background="Purple" 
+                      VerticalAlignment="Stretch" 
+                      HorizontalAlignment="Left" 
+                      ResizeBehavior="CurrentAndNext"/>-->
+
+                <view2:PreviewDisplayView Grid.Column="1"
+                                         DataContext="{Binding Path=PreviewViewModel}"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>
