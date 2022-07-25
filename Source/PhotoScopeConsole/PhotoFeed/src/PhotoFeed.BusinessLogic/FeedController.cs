@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
@@ -42,13 +44,19 @@ namespace PhotoFeed.BusinessLogic
         {
             _searchParameters = searchParams;
             _feedPopulator.ClearFeed();
-            
             FeedLoading?.Invoke(this, EventArgs.Empty);
-            var feedItems = await _feedItemAccessor.GetFeedItems(_searchParameters);
-            _feedPopulator.ClearFeed();
-            _feedPopulator.UpdateResultsTag(_searchParameters.SearchTag);
-            _feedPopulator.AddToFeed(feedItems.ToList());
-            FeedLoaded?.Invoke(this, EventArgs.Empty);
+            try
+            {
+                 var feedItems = await _feedItemAccessor.GetFeedItems(_searchParameters);
+                _feedPopulator.ClearFeed();
+                _feedPopulator.UpdateResultsTag(_searchParameters.SearchTag);
+                _feedPopulator.AddToFeed(feedItems.ToList());
+                FeedLoaded?.Invoke(this, EventArgs.Empty);
+            }
+            finally
+            {
+                FeedLoaded?.Invoke(this,EventArgs.Empty);
+            }
         }
 
         /// <summary>

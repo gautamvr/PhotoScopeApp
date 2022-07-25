@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using PhotoScope.Core.DTOModels;
+using PhotoScope.Core.Exceptions;
 using PhotoScope.Utilities.Common;
 using ServiceAccess.FlickrService.Data;
 using ServiceAccess.FlickrService.Interfaces;
@@ -123,6 +124,11 @@ namespace ServiceAccess.FlickrService
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsAsync<FeedResultModel>();
+
+                    if (result.Stat == "fail")
+                    {
+                        throw new IncorrectParameterException(result.Message);
+                    }
 
                     if (_isCacheEnabled)
                     {

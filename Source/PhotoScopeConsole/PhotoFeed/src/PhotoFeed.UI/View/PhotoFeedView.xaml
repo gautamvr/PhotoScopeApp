@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ext="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:PhotoFeed.UI.Converters"
+
              xmlns:converters="clr-namespace:PhotoScope.Utilities.UI.Common.Converters;assembly=PhotoScope.Utilities.UI.Common"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -78,7 +79,7 @@
                 <Button Style="{StaticResource DefaultButtonStyle}" Margin="0,10"
                         Content="Show more" 
                         Command="{Binding Path=ShowMoreCommand}"
-                        Visibility="{Binding IsContentLoaded, Converter={x:Static converters:BoolToVisibilityConverter.Instance}}"/>
+                        Visibility="{Binding GridItems.Count, Converter={x:Static local:CountToVisibilityCollapseConverter.Instance}}"/>
             </StackPanel>
 
         </ScrollViewer>

@@ -53,6 +53,7 @@
     <Compile Include="DTOModels\SearchParameters.cs" />
     <Compile Include="DTOModels\BaseObservableCollection.cs" />
     <Compile Include="DTOModels\SearchTagItem.cs" />
+    <Compile Include="Exceptions\IncorrectParameterException.cs" />
     <Compile Include="Interfaces\IModelProvider.cs" />
     <Compile Include="Interfaces\IFeedController.cs" />
     <Compile Include="Interfaces\IPreviewController.cs" />

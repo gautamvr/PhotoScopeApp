@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Microsoft.Practices.Unity;
 using PhotoFeed.Utilities.UI.Common;
 using PhotoScope.Core.DTOModels;
+using PhotoScope.Core.Exceptions;
 using PhotoScope.Core.Interfaces;
 using PhotoScope.Utilities.UI.Common;
 
@@ -27,11 +28,25 @@ namespace SearchDashboard.UI.ViewModel
         }
 
         private bool _isValuePresent;
+        private bool _isError;
+        private string _errorMessage;
 
         public bool IsValuePresent
         {
             get { return _isValuePresent; }
             set { SetField(ref _isValuePresent, value); }
+        }
+
+        public bool IsError
+        {
+            get => _isError;
+            set => SetField(ref _isError, value);
+        }
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set => SetField(ref _errorMessage,value);
         }
 
         public ICommand SearchCommand { get; set; }
@@ -53,6 +68,7 @@ namespace SearchDashboard.UI.ViewModel
             ResetTextCommand = new Command(OnResetTextCommand);
             ResetParametersCommand = new Command(OnResetParamCommand);
             ClearResultsCommand = new Command(OnClearResultsCommand);
+            IsError = false;
         }
 
         private void OnResetTextCommand(object obj)
@@ -82,10 +98,14 @@ namespace SearchDashboard.UI.ViewModel
             {
                 await _searchController.Search();
             }
+            catch (IncorrectParameterException e)
+            {
+                IsError = true;
+                ErrorMessage = $"ERROR:{e.Message}";
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
         }
     }

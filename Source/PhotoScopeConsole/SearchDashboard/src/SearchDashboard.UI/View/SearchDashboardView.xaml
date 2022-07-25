@@ -21,6 +21,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
+                <!--Error Message-->
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2"
+                           Style="{StaticResource DefaultTextBlockStyle}"
+                           Foreground="Red"
+                           VerticalAlignment="Bottom"
+                           Visibility="{Binding Path=IsError, Converter={x:Static converters:BoolToCollapsedVisibilityConverter.Instance}}"
+                           Text="{Binding Path=ErrorMessage}"/>
+
                 <TextBlock Grid.Column="0" 
                            Style="{StaticResource BoldTextBlockStyle}"
                            Text="Enter Search Tag here : "
@@ -36,7 +44,7 @@
                     <StackPanel Orientation="Horizontal" Width="Auto" VerticalAlignment="Center">
 
                         <TextBox Name="SearchTextBox"
-                         MinWidth="300" Height="42" FontSize="24" BorderBrush="Transparent"
+                         MinWidth="380" Height="42" FontSize="24" BorderBrush="Transparent"
                          Text="{Binding Path=SearchParameters.SearchTag, UpdateSourceTrigger=PropertyChanged}"
                          Padding="10,0">
                             <TextBox.InputBindings>
