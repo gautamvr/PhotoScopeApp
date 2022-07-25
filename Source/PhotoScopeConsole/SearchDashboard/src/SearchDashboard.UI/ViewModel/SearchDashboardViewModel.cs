@@ -96,7 +96,9 @@ namespace SearchDashboard.UI.ViewModel
         {
             try
             {
+                IsError = false;
                 await _searchController.Search();
+
             }
             catch (IncorrectParameterException e)
             {

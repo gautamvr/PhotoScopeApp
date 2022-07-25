@@ -9,6 +9,13 @@
              xmlns:converter="clr-namespace:PreviewDisplay.UI.Converters"
              mc:Ignorable="d" Width="800" Name="PreviewRegion"
              Visibility="{Binding Path=PreviewDtoModel.IsPreviewOpen, Converter={x:Static converters:BoolToCollapsedVisibilityConverter.Instance}}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="../Themes/PreviewTheme.xaml"></ResourceDictionary>
+        </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -117,6 +124,11 @@
                                     <StackPanel Orientation="Vertical"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Content}"></TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
                     </Grid>
