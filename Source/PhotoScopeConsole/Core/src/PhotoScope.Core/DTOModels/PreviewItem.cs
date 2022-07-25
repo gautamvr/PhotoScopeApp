@@ -2,6 +2,9 @@
 
 namespace PhotoScope.Core.DTOModels
 {
+    /// <summary>
+    /// Item that is to be displayed on the Preview display
+    /// </summary>
     public class PreviewItem : BaseModel
     {
         #region Private Properties

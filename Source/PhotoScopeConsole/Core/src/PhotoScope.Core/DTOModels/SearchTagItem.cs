@@ -1,5 +1,8 @@
 ﻿namespace PhotoScope.Core.DTOModels
 {
+    /// <summary>
+    /// The tag item for the word that is searched by the user (To support multiple tags)
+    /// </summary>
     public class SearchTagItem : BaseModel
     {
         private string _tag;

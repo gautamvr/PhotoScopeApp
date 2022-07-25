@@ -40,7 +40,7 @@ namespace PhotoFeed.BusinessLogic.UnitTests
         }
 
         [Test]
-        public void TestInitialFeedDtoProperty()
+        public void TestFeedDto_Initial_ReturnsDefaultValue()
         {
             //Arrange & Act
             var feedDtoPopulator = new FeedDtoPopulator();
@@ -52,7 +52,7 @@ namespace PhotoFeed.BusinessLogic.UnitTests
 
 
         [Test]
-        public void TestGetDtoModel()
+        public void TestGetDtoModel_WhenModelChanged_ReturnsTheUpdatedModel()
         {
             //Arrange
             var feedDtoPopulator = new FeedDtoPopulator();
@@ -69,7 +69,7 @@ namespace PhotoFeed.BusinessLogic.UnitTests
         }
 
         [Test]
-        public void TestClearFeed()
+        public void TestClearFeed_ShouldClearTheFeedModel()
         {
             //Arrange
             var feedDtoPopulator = new FeedDtoPopulator();
@@ -94,7 +94,7 @@ namespace PhotoFeed.BusinessLogic.UnitTests
         }
 
         [TestCaseSource(nameof(AddToFeedTestData))]
-        public void TestAddToFeed(int expectedCount,IList<FeedItem> expectedFeedItems)
+        public void TestAddToFeed_WhenItemsAreAdded_ModelGetsUpdated(int expectedCount,IList<FeedItem> expectedFeedItems)
         {
             //Arrange
             var feedDtoPopulator = new FeedDtoPopulator();

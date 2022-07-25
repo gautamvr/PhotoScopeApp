@@ -22,22 +22,7 @@ namespace PhotoFeed.UI.View
     {
         public PhotoFeedView()
         {
-            ApplyTheme();
             InitializeComponent();
-        }
-
-        private void ApplyTheme()
-        {
-            var themeUri = new Uri("/PhotoFeed.UI;component/Themes/FeedTheme.xaml",
-                UriKind.RelativeOrAbsolute);
-            if (Application.Current.Resources.MergedDictionaries.All(x => x.Source != themeUri))
-            {
-                var themeDictionary = new ResourceDictionary
-                {
-                    Source = themeUri
-                };
-                Application.Current.Resources.MergedDictionaries.Add(themeDictionary);
-            }
         }
     }
 }

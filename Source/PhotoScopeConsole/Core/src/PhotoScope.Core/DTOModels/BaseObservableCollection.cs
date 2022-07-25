@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace PhotoScope.Core.DTOModels
 {
+    /// <summary>
+    /// Observable collection that should be used by UI models derived from BaseModel
+    /// </summary>
     public class BaseObservableCollection : ObservableCollection<BaseModel>
     {
         /// <summary>

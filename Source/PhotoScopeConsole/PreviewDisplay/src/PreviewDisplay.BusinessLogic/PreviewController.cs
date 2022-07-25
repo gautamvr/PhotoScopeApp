@@ -8,9 +8,16 @@ namespace PreviewDisplay.BusinessLogic
 {
     public class PreviewController : IPreviewController
     {
+        #region Private Properties
+
         private IPreviewItemAccessor _previewItemAccessor;
         private IPreviewPopulator _previewPopulator;
         private string _selectedImageId;
+        private bool _isDisposed;
+
+        #endregion
+
+        #region Public Methods and events
 
         public PreviewController(IUnityContainer container)
         {
@@ -24,14 +31,14 @@ namespace PreviewDisplay.BusinessLogic
             try
             {
                 _previewPopulator.ClearPreviewItem();
+                _previewPopulator.OpenPreviewDisplay(); 
                 PreviewLoading?.Invoke(this,EventArgs.Empty);
                 _selectedImageId = imageId;
-                var previewModel = await _previewItemAccessor.GetPreviewItem(imageId);
+                await _previewItemAccessor.GetPreviewItem(imageId);
                 PreviewLoaded?.Invoke(this,EventArgs.Empty);
             }
             catch (Exception)
             {
-                
                 ClosePreview();
             }
         }
@@ -39,6 +46,7 @@ namespace PreviewDisplay.BusinessLogic
         public void ClosePreview()
         {
             PreviewClosed?.Invoke(this,EventArgs.Empty);
+            _previewPopulator.ClosePreviewDisplay();
             _previewPopulator.ClearPreviewItem();
         }
 
@@ -64,5 +72,20 @@ namespace PreviewDisplay.BusinessLogic
         public event EventHandler PreviewLoading;
 
         public event EventHandler PreviewLoaded;
+
+        #endregion
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _previewItemAccessor?.Dispose();
+                _previewPopulator?.Dispose();
+                _previewPopulator = null;
+                _previewItemAccessor = null;
+                _selectedImageId = "";
+                _isDisposed = true;
+            }
+        }
     }
 }

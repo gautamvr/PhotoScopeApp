@@ -5,7 +5,11 @@ namespace SearchDashboard.BusinessLogic
 {
     public class SearchParameterStore : ISearchParameterStore
     {
-        public SearchParameters SearchConfig { get; }
+        private bool _isDisposed;
+
+        #region Public Methods
+
+        public SearchParameters SearchConfig { get; private set; }
 
         public SearchParameterStore()
         {
@@ -37,6 +41,20 @@ namespace SearchDashboard.BusinessLogic
         public SearchParameters GetSearchConfig()
         {
             return SearchConfig;
+        }
+
+        #endregion
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                ResetParameters();
+                SearchConfig.ItemsPerPage = 0;
+                SearchConfig.CurrentPage = 0;
+                SearchConfig = null;
+                _isDisposed = true;
+            }
         }
     }
 }

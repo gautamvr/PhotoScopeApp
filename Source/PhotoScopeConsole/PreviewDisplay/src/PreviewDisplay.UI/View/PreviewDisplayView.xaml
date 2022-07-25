@@ -7,8 +7,8 @@
              xmlns:converters="clr-namespace:PhotoScope.Utilities.UI.Common.Converters;assembly=PhotoScope.Utilities.UI.Common"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:converter="clr-namespace:PreviewDisplay.UI.Converters"
-             mc:Ignorable="d" Width="600" Name="PreviewRegion"
-             Visibility="{Binding Path=IsPreviewOpen, Converter={x:Static converters:BoolToCollapsedVisibilityConverter.Instance}}">
+             mc:Ignorable="d" Width="800" Name="PreviewRegion"
+             Visibility="{Binding Path=PreviewDtoModel.IsPreviewOpen, Converter={x:Static converters:BoolToCollapsedVisibilityConverter.Instance}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

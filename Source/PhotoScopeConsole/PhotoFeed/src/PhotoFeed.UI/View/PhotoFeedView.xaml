@@ -4,15 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ext="http://schemas.fontawesome.io/icons/"
-             xmlns:local="clr-namespace:PhotoFeed.UI.View"
+             xmlns:local="clr-namespace:PhotoFeed.UI.Converters"
+
              xmlns:converters="clr-namespace:PhotoScope.Utilities.UI.Common.Converters;assembly=PhotoScope.Utilities.UI.Common"
              mc:Ignorable="d">
-    <Grid Name="PhotoFeedGrid">
-        <Border MinHeight="500"/>
-        <ScrollViewer Grid.Column="0" 
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Themes/FeedTheme.xaml"/>
+    </UserControl.Resources>
+
+    <Grid Name="PhotoFeedGrid" Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding Path=Feed.ResultsTag, Converter={x:Static local:ResultsTagToTextConverter.Instance}}"
+                       Style="{StaticResource BoldTextBlockStyle}"
+                       HorizontalAlignment="Left"/>
+
+            <Button Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    Command="{Binding Path=ClearFeedCommand}"
+                    Content="Clear Feed"/>
+        </Grid>
+
+        <Border Grid.Row="1" MinHeight="500"/>
+        
+        <ScrollViewer Grid.Row="1" Margin="0,10"
                       VerticalScrollBarVisibility="Auto"
-                      Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}"
-                      Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}">
+                      Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}">
 
             <StackPanel>
                 <ItemsControl ItemsSource="{Binding Path=GridItems}" ItemTemplate="{StaticResource ResourceKey=FeedItemTemplate}">
@@ -47,18 +74,14 @@
                         </ControlTemplate>
                     </ItemsControl.Template>
                 </ItemsControl>
-                <Button Content="Show more" 
-                    Command="{Binding Path=ShowMore}"
-                    Visibility="{Binding IsContentLoaded, Converter={x:Static converters:BoolToVisibilityConverter.Instance}}"/>
+
+                <!--Show More button-->
+                <Button Style="{StaticResource DefaultButtonStyle}" Margin="0,10"
+                        Content="Show more" 
+                        Command="{Binding Path=ShowMoreCommand}"
+                        Visibility="{Binding GridItems.Count, Converter={x:Static local:CountToVisibilityCollapseConverter.Instance}}"/>
             </StackPanel>
 
         </ScrollViewer>
-
-
-
-
-
-
-
     </Grid>
 </UserControl>

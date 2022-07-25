@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ServiceAccess.Interfaces.Interfaces
 {
-    public interface IQueryBuilder
+    /// <summary>
+    /// Builder interface that has necessary build functions to build a query
+    /// </summary>
+    public interface IQueryBuilder : IDisposable
     {
         void AddGetImageMethodQuery();
 

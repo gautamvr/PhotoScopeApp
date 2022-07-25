@@ -8,7 +8,10 @@ using ServiceAccess.FlickrService.Interfaces;
 
 namespace HostControl.Bootstrapper.AppStart
 {
-    internal class HostBootstrapper
+    /// <summary>
+    /// The bootstrapper class
+    /// </summary>
+    public class HostBootstrapper
     {
         private IUnityContainer _container;
 
@@ -19,15 +22,29 @@ namespace HostControl.Bootstrapper.AppStart
             InitializeShell();
         }
 
+        /// <summary>
+        /// Sets up the Service accessor with the API Key
+        /// </summary>
         private void SetupServiceAccess()
         {
             var serviceAccess = _container.Resolve<IServiceAccessor>();
             var configuration = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
 
             var apiKey = configuration.AppSettings.Settings["APIKey"].Value;
+            var cacheVal = configuration.AppSettings.Settings["CacheEnabled"].Value;
+            var cacheCapacityVal = configuration.AppSettings.Settings["CacheCapacity"].Value;
+
+            bool.TryParse(cacheVal, out bool isCacheEnabled);
+            int.TryParse(cacheCapacityVal, out int cacheCapacity);
+            
             serviceAccess.SetApiKey(apiKey);
+            serviceAccess.SetupCacheStore(isCacheEnabled,cacheCapacity);
         }
 
+        /// <summary>
+        /// Loads the configuration from the Unity file
+        /// </summary>
+        /// <param name="container"></param>
         private void LoadConfiguration(IUnityContainer container)
         {
             var configuration =
@@ -36,6 +53,10 @@ namespace HostControl.Bootstrapper.AppStart
             container.LoadConfiguration(unityConfigurationSection);
         }
 
+        /// <summary>
+        /// Creates a container
+        /// </summary>
+        /// <returns></returns>
         protected IUnityContainer CreateContainer()
         {
             var container = new UnityContainer();
@@ -43,6 +64,9 @@ namespace HostControl.Bootstrapper.AppStart
             return container;
         }
 
+        /// <summary>
+        /// Initializes the Shell window
+        /// </summary>
         protected void InitializeShell()
         {
             Application.Current.MainWindow = _container.Resolve<Window>();
