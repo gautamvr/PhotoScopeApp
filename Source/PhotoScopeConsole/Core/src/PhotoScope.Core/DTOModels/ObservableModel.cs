@@ -5,9 +5,14 @@ using PhotoFeed.Core.Annotations;
 
 namespace PhotoScope.Core.DTOModels
 {
+    /// <summary>
+    /// Observable model that implements INotify property changed (To be used by any models that is to be shown on UI)
+    /// </summary>
     public class ObservableModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #region Protected Fields
 
         protected bool SetField<T>(ref T propertyField, T value,
             [CallerMemberName] string propertyName = null)
@@ -26,5 +31,7 @@ namespace PhotoScope.Core.DTOModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

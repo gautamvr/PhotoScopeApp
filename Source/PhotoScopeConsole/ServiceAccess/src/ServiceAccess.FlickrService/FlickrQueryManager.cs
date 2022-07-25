@@ -7,8 +7,15 @@ namespace ServiceAccess.FlickrService
 {
     public class FlickrQueryManager : IQueryManager
     {
+        #region Private Properties
+
         private IQueryBuilder _queryBuilder;
         private readonly string _baseAddress;
+        private bool _isDisposed;
+
+        #endregion
+
+        #region Public methods
 
         public IQueryBuilder QueryBuilder
         {
@@ -68,6 +75,21 @@ namespace ServiceAccess.FlickrService
 
         }
 
+        #endregion
 
+
+        #region Dispose Pattern
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _queryBuilder.Dispose();
+                _isDisposed = true;
+            }
+
+        }
+
+        #endregion
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace PhotoScope.Core.DTOModels
 {
+    /// <summary>
+    /// Search Parameters based on the users input
+    /// </summary>
     public class SearchParameters : ObservableModel
     {
         #region Private Properties

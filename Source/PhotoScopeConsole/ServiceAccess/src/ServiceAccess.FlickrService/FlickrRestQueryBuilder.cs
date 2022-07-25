@@ -3,9 +3,15 @@ using ServiceAccess.Interfaces.Interfaces;
 
 namespace ServiceAccess.FlickrService
 {
+    /// <summary>
+    /// Builder class to provide Query for Flickr service
+    /// </summary>
     public class FlickrRestQueryBuilder : IQueryBuilder
     {
         private IList<string> _parametersList = new List<string>();
+        private bool _isDisposed;
+
+        #region Builder Functions
 
         public void AddGetImageMethodQuery()
         {
@@ -103,5 +109,21 @@ namespace ServiceAccess.FlickrService
         {
             _parametersList.Clear();
         }
+
+        #endregion
+
+        #region Dispose Pattern
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                Reset();
+                _parametersList = null;
+                _isDisposed = true;
+            }
+        }
+
+        #endregion
     }
 }

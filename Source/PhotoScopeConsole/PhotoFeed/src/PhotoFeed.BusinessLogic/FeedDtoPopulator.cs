@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using PhotoFeed.Interfaces;
 using PhotoScope.Core.DTOModels;
@@ -7,6 +8,8 @@ namespace PhotoFeed.BusinessLogic
 {
     public class FeedDtoPopulator : IFeedDtoPopulator
     {
+        private bool _isDisposed;
+
         public Feed FeedDto { get; }
 
         public FeedDtoPopulator()
@@ -52,5 +55,15 @@ namespace PhotoFeed.BusinessLogic
         {
 
         }
+        
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                ClearFeed();
+                _isDisposed = true;
+            }
+        }
+        
     }
 }

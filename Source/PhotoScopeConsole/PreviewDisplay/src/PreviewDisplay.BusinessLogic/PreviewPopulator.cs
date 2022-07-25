@@ -7,7 +7,11 @@ namespace PreviewDisplay.BusinessLogic
 {
     public class PreviewPopulator : IPreviewPopulator
     {
-        public PreviewModel PreviewDtoModel { get; }
+        private bool _isDisposed;
+
+        #region Public Methods
+
+        public PreviewModel PreviewDtoModel { get; private set; }
 
         public PreviewPopulator()
         {
@@ -92,6 +96,18 @@ namespace PreviewDisplay.BusinessLogic
         public void OpenPreviewDisplay()
         {
             PreviewDtoModel.IsPreviewOpen = true;
+        }
+
+        #endregion
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                ClearPreviewItem();
+                PreviewDtoModel = null;
+                _isDisposed = true;
+            }
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace PhotoScope.Core.DTOModels
 {
+    /// <summary>
+    /// A Photo item that it to be displayed on the feed
+    /// </summary>
     public class PhotoItem : FeedItem
     {
         #region Private Properties

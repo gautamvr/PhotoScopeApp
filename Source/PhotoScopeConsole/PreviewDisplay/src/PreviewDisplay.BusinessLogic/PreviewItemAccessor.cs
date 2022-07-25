@@ -12,9 +12,16 @@ namespace PreviewDisplay.BusinessLogic
 {
     public class PreviewItemAccessor : IPreviewItemAccessor
     {
+        #region Private Properties
+
         private IServiceAccessor _serviceAccessor;
         private IPreviewPopulator _previewPopulator;
+        private bool _isDisposed;
 
+        #endregion
+
+
+        #region Public Method
 
         public PreviewItemAccessor(IUnityContainer container)
         {
@@ -35,6 +42,10 @@ namespace PreviewDisplay.BusinessLogic
 
             return GetComments(commentsResult);
         }
+
+        #endregion
+
+        #region Private Methods
 
         private PreviewItem UpdatePreviewModel(PhotoInfo photoInfoModel)
         {
@@ -106,6 +117,20 @@ namespace PreviewDisplay.BusinessLogic
                 throw;
             }
 
+        }
+
+        #endregion
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _serviceAccessor?.Dispose();
+                _previewPopulator?.Dispose();
+                _serviceAccessor = null;
+                _previewPopulator = null;
+                _isDisposed = true;
+            }
         }
     }
 }

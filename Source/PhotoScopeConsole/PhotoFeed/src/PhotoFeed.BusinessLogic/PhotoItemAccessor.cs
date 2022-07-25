@@ -9,9 +9,16 @@ using ServiceAccess.FlickrService.Interfaces;
 
 namespace PhotoFeed.BusinessLogic
 {
-    internal class PhotoItemAccessor : IFeedItemAccessor
+    public class PhotoItemAccessor : IFeedItemAccessor
     {
+        #region Private Properties
+
         private IServiceAccessor _serviceAccessor;
+        private bool _disposed;
+
+        #endregion
+
+        #region Public method and Constructor
 
         public PhotoItemAccessor(IUnityContainer container)
         {
@@ -23,6 +30,10 @@ namespace PhotoFeed.BusinessLogic
             var photos = await _serviceAccessor.GetImagesAsync(searchConfig);
             return ProcessImages(photos);
         }
+
+        #endregion
+
+        #region Private Methods
 
         private IEnumerable<FeedItem> ProcessImages(PhotoList photoList)
         {
@@ -50,6 +61,18 @@ namespace PhotoFeed.BusinessLogic
                 Url = photo.Url_t,
                 Owner = photo.Owner
             };
+        }
+
+        #endregion
+
+        public void Dispose()
+        {
+            if (!_disposed)
+            {
+                _serviceAccessor.Dispose();
+                _serviceAccessor = null;
+                _disposed = true;
+            }
         }
     }
 }
