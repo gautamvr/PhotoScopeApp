@@ -17,21 +17,20 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1" Name="PhotoFeedGrid" >
+        <Grid Name="PhotoFeedGrid" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!--Close Preview button-->
-            <Button Grid.Row="0" 
-                Content="Close Preview" 
+            <Button Grid.Row="0"
+                Style="{StaticResource IconButtonStyle}"
                 HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Command="{Binding Path=ClosePreview}"/>
+                Command="{Binding Path=ClosePreview}" Height="40" Width="40">
+                <Image Source="{StaticResource CrossIcon}"></Image>
+            </Button>
 
             <ScrollViewer Grid.Row="1" 
                       VerticalScrollBarVisibility="Auto" 
@@ -49,6 +48,7 @@
                                       Width="80" Height="80" Margin="0,40,0,0" 
                                       Spin="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Grid.Row="1" 
+                                   Style="{StaticResource DefaultTextBlockStyle}"
                            Text="Loading..." 
                            HorizontalAlignment="Center" VerticalAlignment="Center" 
                            FontSize="20" Margin="0,20"/>
@@ -79,7 +79,10 @@
                             <!--User Name-->
                             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
                                 <Image Source="{Binding Path=PreviewItemOwner.DisplayPhotoUrl}" Height="24" Width="24"/>
-                                <TextBlock Text="{Binding Path=PreviewItemOwner.FullName}" TextTrimming="CharacterEllipsis" Height="40"/>
+                                <TextBlock Text="{Binding Path=PreviewItemOwner.FullName}"
+                                           HorizontalAlignment="Left"
+                                           Style="{StaticResource DefaultTextBlockStyle}"
+                                           TextTrimming="CharacterEllipsis" Height="40"/>
                             </StackPanel>
 
                             <!--Preview Image-->
@@ -89,44 +92,58 @@
                         </Grid>
 
                         <!--Image Title-->
-                        <TextBlock Grid.Row="1" Text="{Binding Path=Title}" Height="24"/>
+                        <TextBlock Grid.Row="1" 
+                                   Text="{Binding Path=Title}"
+                                   HorizontalAlignment="Left"
+                                   Style="{StaticResource BoldTextBlockStyle}"
+                                   Height="24"/>
 
                         <!--Image Details-->
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="2" HorizontalAlignment="Left">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <!--Description-->
-                            <TextBlock Grid.Row="0" Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow"/>
+                            <TextBlock Grid.Row="0" 
+                                       Text="{Binding Path=Description}" 
+                                       TextWrapping="WrapWithOverflow"
+                                       HorizontalAlignment="Left"
+                                       Style="{StaticResource DefaultTextBlockStyle}"/>
 
                             <!--Views-->
-                            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                <TextBlock Text="Views :"/>
-                                <TextBlock Text="{Binding Path= Views}"/>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="Views :"  
+                                           Style="{StaticResource DefaultTextBlockStyle}" />
+
+                                <TextBlock Text="{Binding Path= Views}"  
+                                           Style="{StaticResource DefaultTextBlockStyle}"/>
                             </StackPanel>
                         </Grid>
 
                         <!--Comments-->
                         <StackPanel  Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToTextConverter.Instance}}"></TextBlock>
+                            <TextBlock  Style="{StaticResource DefaultTextBlockStyle}"
+                                        Text="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToTextConverter.Instance}}"></TextBlock>
 
-                            <Button Content="Load Comments"
-                                Command="{Binding ElementName=PreviewRegion, Path=DataContext.LoadComments}"
-                                Visibility="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToVisibilityConverter.Instance}}"/>
+                            <Button Content="Load Comments" 
+                                    Style="{StaticResource DefaultButtonStyle}"
+                                    Command="{Binding ElementName=PreviewRegion, Path=DataContext.LoadComments}"
+                                    Visibility="{Binding Path=NumOfComments, Converter={x:Static converter:NumCommentsToVisibilityConverter.Instance}}"/>
 
                         </StackPanel>
 
                         <ItemsControl Grid.Row="4" ItemsSource="{Binding Path=CommentsList}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Content}"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Content}" 
+                                               Style="{StaticResource DefaultTextBlockStyle}"></TextBlock>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
